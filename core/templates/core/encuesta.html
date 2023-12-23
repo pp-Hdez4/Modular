@@ -10,14 +10,27 @@
 
 
 <h2>Formulario Tutoria de ingreso</h2>
-<form action="" class="formulario_Tutoria" method="post">
-    {% csrf_token %}
+<div class="row">
+    <div class="col-12 col-md-6-offset-md-3">
+        <form action="" class="formulario_Tutoria" method="post">
+            {% csrf_token %}
+        
+            {{ form | crispy }}
+            
+            <br>
+            <div class="d-flex justify-content-center">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+            
+        </form>
+        {{mensaje}}
 
-    {{ form | crispy }}
-    
+    </div>
 
-    <button type="submit" id="btnEnviar" class="button">Enviar</button>
-</form>
-{{mensaje}}
+</div>
+
+
 
 {% endblock %}
