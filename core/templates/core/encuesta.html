@@ -1,4 +1,19 @@
+
 <h1>Encuesta - Tutoria de ingreso</h1>
 <ul>
     <li><a href="/">Home</a></li>
 </ul>
+
+{% block contenido %}
+
+<h2>Formulario Tutoria de ingreso</h2>
+<form action="" class="formulario_Tutoria" method="post">
+    {% csrf_token %}
+
+    {{ form }}
+    
+
+    <button type="submit" id="btnEnviar" class="button">Enviar</button>
+</form>
+{{mensaje}}
+{% endblock %}
