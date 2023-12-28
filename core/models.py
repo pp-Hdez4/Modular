@@ -29,6 +29,16 @@ OpcionesImportancia = [
     [5, "5 - Muy Alto"],
 ]
 
+# Opciones para la pregunta con radio buttons
+OpcionesPregunta = [
+    (1, "1"),
+    (2, "2"),
+    (3, "3"),
+    (4, "4"),
+    (5, "5"),
+]
+
+
 class TutoriaIngreso(models.Model):
     CodigoEstudiante = models.IntegerField()
     ApellidoPaterno = models.CharField(max_length=150)
@@ -41,6 +51,7 @@ class TutoriaIngreso(models.Model):
     FechaNacimiento = models.DateField()
     EstadoCivil = models.IntegerField(choices= OpcionesEstadoCivil)
     importancia = models.IntegerField(choices=OpcionesImportancia)
+    pregunta_radio = models.IntegerField(choices=OpcionesPregunta, default=1)
     
     def __str__(self):
         return self.Nombres
