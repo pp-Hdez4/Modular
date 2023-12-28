@@ -13,6 +13,7 @@ class TutoriaInicialForm(forms.ModelForm):
             'Telefono': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 150px;'}),
             'Municipio': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 150px;'}),
             'FechaNacimiento': forms.DateInput(attrs={'class': 'form-control form-control-sm'}),
+            'pregunta_radio': forms.RadioSelect(),
             # Agrega más campos según sea necesario
         }
         #Incluir los atributos de uno en uno del modelo
