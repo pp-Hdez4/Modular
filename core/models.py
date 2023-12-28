@@ -53,5 +53,14 @@ class TutoriaIngreso(models.Model):
     importancia = models.IntegerField(choices=OpcionesImportancia)
     pregunta_radio = models.IntegerField(choices=OpcionesPregunta, default=1)
     
+    ActividadCine = models.BooleanField("Cine", default=False)
+    ActividadMuseos = models.BooleanField("Museos", default=False)
+    ActividadConciertos = models.BooleanField("Conciertos", default=False)
+    ActividadLeerLibros = models.BooleanField("Leer Libros", default=False)
+    ActividadFeriasCulturales = models.BooleanField("Ferias culturales", default=False)
+    ActividadDeporte = models.BooleanField("Deporte", default=False)
+    ActividadOtro = models.CharField(max_length=150,default='')
+    
+    
     def __str__(self):
         return self.Nombres
