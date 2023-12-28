@@ -14,8 +14,12 @@ class TutoriaInicialForm(forms.ModelForm):
             'Municipio': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 150px;'}),
             'FechaNacimiento': forms.DateInput(attrs={'class': 'form-control form-control-sm'}),
             'pregunta_radio': forms.RadioSelect(),
+            'ActividadOtro': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 150px;'}),
+            
             # Agrega más campos según sea necesario
         }
+        
+        # Personaliza el init para excluir campos específicos
         #Incluir los atributos de uno en uno del modelo
         #fields = ["CodigoEstudiante", "ApellidoPaterno", "ApellidoMaterno", "Nombres", "Telefono", "Genero", "ProgramaEducativo", "Municipio", "FechaNacimiento", "EstadoCivil", "importancia"]
         
