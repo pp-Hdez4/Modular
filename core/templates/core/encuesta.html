@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<h1>Encuesta - Tutoria de ingreso</h1>
+<ul>
+    <li><a href="/">Home</a></li>
+</ul>
+
+
+
+<h2>Formulario Tutoria de ingreso</h2>
+<div class="row">
+    <div class="col-12 col-md-6-offset-md-3">
+        <form action="" class="formulario_Tutoria" method="post">
+            {% csrf_token %}
+        
+            {{ form | crispy }}
+            <div class="form-group">
+                {{ form.CodigoEstudiante | as_crispy_field }}
+                
+              </div>
+            
+            <div>
+                <p>Realizas actividades culturales o recreativas?</p>
+                {{ form.ActividadMuseos }}
+                {{ form.ActividadConciertos }}
+                {{ form.ActividadLeerLibros }}
+                {{ form.ActividadFeriasCulturales }}
+                {{ form.ActividadDeporte }}
+            </div>
+
+
+            <br>
+            <div class="d-flex justify-content-center">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+            
+        </form>
+        {{mensaje}}
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}
