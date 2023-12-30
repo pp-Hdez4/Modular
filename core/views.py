@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse
-from .forms import TutoriaInicialForm
+from django.shortcuts import render
+from .forms import TutoriaInicialForm, EducationalProgram
 
 # Create your views here.
 
@@ -21,3 +21,10 @@ def encuesta(request):
     
     return render(request, "core/encuesta.html", data)
 
+def survey_eduprog(request):
+    data = {
+        #Creacion de instancia de TutoriaInicialForm 
+        'form': EducationalProgram()
+    }
+
+    return render(request, "core/survey_eduprog.html", data)

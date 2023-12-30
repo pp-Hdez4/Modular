@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<h1>Encuesta - Programa Educativo</h1>
+<ul>
+    <li><a href="/">Home</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-12 col-md-6-offset-md-3">
+        <form action="" class="form_eduprog">
+            {% csrf_token %}
+        
+            {{ form.Recomendacion | as_crispy_field }}
+            Plan de Estudios
+            {{ form.Plan_de_Estudios }}
+            <div>
+                <p>Realizas actividades culturales o recreativas?</p>
+                {{ form.cinema | as_crispy_field }}
+                {{ form.museum | as_crispy_field }}
+                {{ form.reading | as_crispy_field }}
+                {{ form.cultural_fairs | as_crispy_field }}
+                {{ form.sports | as_crispy_field }}
+                {{ form.others | as_crispy_field }}
+            </div>
+
+
+            <br>
+            <div class="d-flex justify-content-center">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+            
+        </form>
+        {{mensaje}}
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

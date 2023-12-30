@@ -38,6 +38,16 @@ OpcionesPregunta = [
     (5, "5"),
 ]
 
+rankingOptions = [
+    (1, "1"),
+    (2, "2"),
+    (3, "3"),
+    (4, "4"),
+    (5, "5"),
+    (6, "6"),
+]
+
+
 
 class TutoriaIngreso(models.Model):
     CodigoEstudiante = models.IntegerField()
@@ -64,3 +74,30 @@ class TutoriaIngreso(models.Model):
     
     def __str__(self):
         return self.Nombres
+
+class EducationalProgram(models.Model):
+    #meanings
+    Recomendacion = models.IntegerField(choices = rankingOptions, default=1)
+    Plan_de_Estudios = models.IntegerField(choices = rankingOptions, default=1) #plan de estudios
+    Planta_Academica = models.IntegerField(choices = rankingOptions, default=1) #planta academica
+    Instalaciones = models.IntegerField(choices = rankingOptions, default=1) #instalaciones
+    Costos = models.IntegerField(choices = rankingOptions, default=1) #costos
+    Horarios = models.IntegerField(choices = rankingOptions, default=1) #horarios
+    #motivation
+    Prestigio_Institucion = models.IntegerField(choices = rankingOptions, default=1) #prestigio
+    Reconocimiento_social_familiar = models.IntegerField(choices = rankingOptions, default=1) #reconocimiento
+    Superacion_personal = models.IntegerField(choices = rankingOptions, default=1) #superacion
+    Actualizacion_campo_laboral = models.IntegerField(choices = rankingOptions, default=1) #actualizacion de campo
+    Movilidad_laboral_e_ingresos = models.IntegerField(choices = rankingOptions, default=1) #movilidad laboral/ingresos
+    Empresas_solicitan_grado_academico = models.IntegerField(choices = rankingOptions, default=1) #solicitud empresas
+    #cultural activities
+
+    cinema = models.BooleanField("Cine", default = False)
+    museum = models.BooleanField("Museos", default = False)
+    concerts = models.BooleanField("Conciertos", default = False)
+    reading = models.BooleanField("Leer libros", default = False)
+    cultural_fairs = models.BooleanField("Ferias Culturales", default = False)
+    sports = models.BooleanField("Deportes", default = False)
+    others = models.CharField(max_length = 150, default = '')
+
+
