@@ -1,5 +1,5 @@
 from django import forms
-from .models import TutoriaIngreso, EducationalProgram
+from .models import TutoriaIngreso, EducationalProgram, emprendimiento
 
 class TutoriaInicialForm(forms.ModelForm):
     class Meta:
@@ -37,6 +37,18 @@ class EducationalProgram(forms.ModelForm):
             'Movilidad_laboral_e_ingresos': forms.RadioSelect(),
             'Empresas_solicitan_grado_academico': forms.RadioSelect(),
             'others': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 100px;'}),
+        }
+
+class emprendimiento(forms.ModelForm):
+    class Meta:
+        model = emprendimiento
+        fields = '__all__'
+        widgets = {
+            'is_emprendimiento': forms.RadioSelect(),
+            'is_interesting' : forms.RadioSelect(),
+            'if_option' : forms.RadioSelect(),
+            'tools_udg' : forms.RadioSelect(),
+            'is_community' : forms.RadioSelect(),
         }
 
 

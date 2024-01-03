@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import TutoriaInicialForm, EducationalProgram
+from .forms import TutoriaInicialForm, EducationalProgram, emprendimiento
 
 # Create your views here.
 
@@ -28,3 +28,9 @@ def survey_eduprog(request):
     }
 
     return render(request, "core/survey_eduprog.html", data)
+
+def emprend(request):
+    data = {
+        'form': emprendimiento()
+    }
+    return render(request, "core/emprend.html", data)

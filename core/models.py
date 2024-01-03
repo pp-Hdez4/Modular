@@ -47,6 +47,17 @@ rankingOptions = [
     (6, "6"),
 ]
 
+rankingOptions3 = [
+    (1, "Tengo una idea de negocio que me gustaria impulsar"),
+    (2, "Estoy desarollando un proyecto de emprendimiento, pero no lo he puesto en marcha"),
+    (3, "Ninguna de las anteriores"),
+]
+
+rankingBool = [
+    (0, "Si"),
+    (1, "No"),
+]
+
 
 
 class TutoriaIngreso(models.Model):
@@ -100,4 +111,9 @@ class EducationalProgram(models.Model):
     sports = models.BooleanField("Deportes", default = False)
     others = models.CharField(max_length = 150, default = '')
 
-
+class emprendimiento(models.Model):
+    is_emprendimiento = models.IntegerField("¿Tienes alguna idea o proyecto de emprendimieto?", choices = rankingBool, default = 0)
+    is_interesting = models.IntegerField("¿Te interesa emprender?", choices = rankingBool, default = 0)
+    if_option = models.IntegerField("Si respondiste ""si"" a la pregunta anterior, por favor, selecciona la opcion de acuerdo con tu situación", choices = rankingOptions3, default = 1)
+    tools_udg = models.BooleanField("¿Conoces las herramientas que la U de G ofrece para desarrollar y dar seguimiento a tu emprendimiento?", choices = rankingBool, default = 0)
+    is_community = models.BooleanField("¿Te interesaria formar parte de alguna comunidad de emprendimiento para seguir desarrollando tus habilidades?", choices = rankingBool, default = 0)
