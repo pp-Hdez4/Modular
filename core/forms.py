@@ -1,5 +1,5 @@
 from django import forms
-from .models import TutoriaIngreso, EducationalProgram, emprendimiento
+from .models import TutoriaIngreso, EducationalProgram, emprendimiento, adicciones
 
 class TutoriaInicialForm(forms.ModelForm):
     class Meta:
@@ -51,6 +51,18 @@ class emprendimiento(forms.ModelForm):
             'is_community' : forms.RadioSelect(),
         }
 
+class adicciones(forms.ModelForm):
+    class Meta:
+        model = adicciones
+        fields = '__all__'
+        widgets = {
+            'smoke' : forms.RadioSelect(),
+            'w_smoke' : forms.RadioSelect(),
+            't_smoke' : forms.RadioSelect(),
+            'drinks_alcohol' : forms.RadioSelect(),
+            'other_smoke' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            't_alcohol' : forms.RadioSelect(),
+        }
 
         # Personaliza el init para excluir campos específicos
         #Incluir los atributos de uno en uno del modelo
