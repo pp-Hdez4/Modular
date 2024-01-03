@@ -54,11 +54,29 @@ rankingOptions3 = [
 ]
 
 rankingBool = [
-    (0, "Si"),
-    (1, "No"),
+    (1, "Si"),
+    (0, "No"),
 ]
 
+drugs_types = [
+    (0, "Tabaco"),
+    (1, "Marihuana"),
+    (2, "Otro: "),
+]
 
+times_drugs = [
+    (0, "De 1 a 3"),
+    (1, "De 3 a 5"),
+    (2, "De 5 a 10"),
+    (3, "Mas de 10"),
+    (4, "Ocasionalmente"),
+]
+
+times_alcohol = [
+    (0, "Diario"),
+    (1, "Una o dos veces por semana"),
+    (2, "Mas de 2 veces por semana"),
+]
 
 class TutoriaIngreso(models.Model):
     CodigoEstudiante = models.IntegerField()
@@ -112,8 +130,16 @@ class EducationalProgram(models.Model):
     others = models.CharField(max_length = 150, default = '')
 
 class emprendimiento(models.Model):
-    is_emprendimiento = models.IntegerField("¿Tienes alguna idea o proyecto de emprendimieto?", choices = rankingBool, default = 0)
+    is_emprendimiento = models.IntegerField("¿Tienes alguna idea o proyecto de emprendimieto?", choices = rankingBool, default = 1)
     is_interesting = models.IntegerField("¿Te interesa emprender?", choices = rankingBool, default = 0)
     if_option = models.IntegerField("Si respondiste ""si"" a la pregunta anterior, por favor, selecciona la opcion de acuerdo con tu situación", choices = rankingOptions3, default = 1)
     tools_udg = models.BooleanField("¿Conoces las herramientas que la U de G ofrece para desarrollar y dar seguimiento a tu emprendimiento?", choices = rankingBool, default = 0)
     is_community = models.BooleanField("¿Te interesaria formar parte de alguna comunidad de emprendimiento para seguir desarrollando tus habilidades?", choices = rankingBool, default = 0)
+
+class adicciones(models.Model):
+    smoke = models.IntegerField("¿Fumas?", choices = rankingBool, default = 1)
+    w_smoke = models.IntegerField("¿Si la respuesta es si, qué es lo que fumas?", choices = drugs_types, default = 0)
+    other_smoke = models.CharField("", max_length=150)
+    t_smoke = models.IntegerField("Si la respuesta es si, ¿Cuántas dosis al día?", choices = times_drugs, default = 0)
+    drinks_alcohol = models.IntegerField("¿Consumes bebidas con alcohol?", choices = rankingBool, default = 1)
+    t_alcohol = models.IntegerField("Si la respuesta es si, ¿Con qué frecuencia?", choices = times_alcohol, default = 0)

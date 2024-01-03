@@ -23,5 +23,6 @@ urlpatterns = [
     path('encuesta/', views.encuesta, name="encuesta"),
     path('survey_eduprog/', views.survey_eduprog, name = "survey_eduprog"),
     path('admin/', admin.site.urls),
-    path('emprend/', views.emprend, name = "emprend")
+    path('emprend/', views.emprend, name = "emprend"),
+    path('adicciones/', views.adiccion, name = "adicciones")
 ]
