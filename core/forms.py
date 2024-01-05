@@ -1,6 +1,7 @@
 from django import forms
-from .models import TutoriaIngreso, EducationalProgram, emprendimiento, adicciones
+from .models import TutoriaIngreso, EducationalProgram, emprendimiento, adicciones , EmpleoIngresos
 
+#Formulario de tutoria de ingreso encuesta.html
 class TutoriaInicialForm(forms.ModelForm):
     class Meta:
         model = TutoriaIngreso
@@ -43,7 +44,7 @@ class emprendimiento(forms.ModelForm):
     class Meta:
         model = emprendimiento
         fields = '__all__'
-        widgets = {
+        widgets = {     
             'is_emprendimiento': forms.RadioSelect(),
             'is_interesting' : forms.RadioSelect(),
             'if_option' : forms.RadioSelect(),
@@ -63,6 +64,20 @@ class adicciones(forms.ModelForm):
             'other_smoke' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
             't_alcohol' : forms.RadioSelect(),
         }
+        
+class EmpleoIngresosForm(forms.ModelForm):
+    class Meta:
+        
+        model = EmpleoIngresos
+        fields = '__all__'
+        widgets = {
+            'TrabajoActual' : forms.RadioSelect(),
+            'TrabajoRelacionadoCarrera' : forms.RadioSelect(),
+            'HorasTrabajadasSemana' : forms.RadioSelect(),
+            'IngresoMensualTrabajo' : forms.RadioSelect(),
+            'AportacionEconomicaImportancia' : forms.RadioSelect(),
+               
+        }    
 
         # Personaliza el init para excluir campos específicos
         #Incluir los atributos de uno en uno del modelo

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import TutoriaInicialForm, EducationalProgram, emprendimiento, adicciones
+from .forms import TutoriaInicialForm, EducationalProgram, emprendimiento, adicciones , EmpleoIngresosForm
 
 # Create your views here.
 
@@ -40,3 +40,9 @@ def adiccion(request):
         'form': adicciones()
     }
     return render(request, "core/adicciones.html", data)
+
+def Empleo(request):
+    data = {
+        'form' : EmpleoIngresosForm()
+    }
+    return render(request, "core/encuestaEmpleo.html", data)
