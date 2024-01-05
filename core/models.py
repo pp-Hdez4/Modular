@@ -78,6 +78,22 @@ times_alcohol = [
     (2, "Mas de 2 veces por semana"),
 ]
 
+HorasTrabajadas = [
+    (0, "Menos de 10"),
+    (1, "De 10 a 20"),
+    (2, "De 21 a 40"),
+]
+
+IngresoMensual = [
+    (0, "$2,600 a $6,000"),
+    (1, "$6,001 a $10,000"),
+    (2, "10,001 a $32,000"),
+    (3, "32,001 a $81,000"),
+    (4, "Mas de $81,000"),
+    
+    
+]
+
 class TutoriaIngreso(models.Model):
     CodigoEstudiante = models.IntegerField()
     ApellidoPaterno = models.CharField(max_length=150)
@@ -90,15 +106,8 @@ class TutoriaIngreso(models.Model):
     FechaNacimiento = models.DateField()
     EstadoCivil = models.IntegerField(choices= OpcionesEstadoCivil)
     importancia = models.IntegerField(choices=OpcionesImportancia)
-    pregunta_radio = models.IntegerField(choices=OpcionesPregunta, default=1)
+    Recomendacion = models.IntegerField(choices=OpcionesPregunta, default=1)
     
-    ActividadCine = models.BooleanField("Cine", default=False)
-    ActividadMuseos = models.BooleanField("Museos", default=False)
-    ActividadConciertos = models.BooleanField("Conciertos", default=False)
-    ActividadLeerLibros = models.BooleanField("Leer Libros", default=False)
-    ActividadFeriasCulturales = models.BooleanField("Ferias culturales", default=False)
-    ActividadDeporte = models.BooleanField("Deporte", default=False)
-    ActividadOtro = models.CharField(max_length=150,default='')
     
     
     def __str__(self):
@@ -143,3 +152,11 @@ class adicciones(models.Model):
     t_smoke = models.IntegerField("Si la respuesta es si, ¿Cuántas dosis al día?", choices = times_drugs, default = 0)
     drinks_alcohol = models.IntegerField("¿Consumes bebidas con alcohol?", choices = rankingBool, default = 1)
     t_alcohol = models.IntegerField("Si la respuesta es si, ¿Con qué frecuencia?", choices = times_alcohol, default = 0)
+
+class EmpleoIngresos(models.Model):
+    TrabajoActual = models.BooleanField("¿Trabajas actualmente?", choices = rankingBool, default = 0)
+    TrabajoRelacionadoCarrera = models.BooleanField("¿Tu trabajo actual esta relacionado con la carrera que estudias?", choices = rankingBool, default = 0)
+    HorasTrabajadasSemana = models.BooleanField("¿Trabajas actualmente?", choices = HorasTrabajadas, default = 0)
+    IngresoMensualTrabajo = models.BooleanField("Por favor indica a cuanto asciende tu ingreso mensual aproximadamente si trabajas:", choices = IngresoMensual, default = 0)
+    AportacionEconomicaImportancia = models.BooleanField("Senala que tan importante es su aportacion economica en tu hogar a partir de la siguiente escala:", choices = OpcionesPregunta, default = 0)
+    

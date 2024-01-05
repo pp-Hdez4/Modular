@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<h1>Encuesta - Tutoria de ingreso</h1>
+<ul>
+    <li><a href="/">Home</a></li>
+</ul>
+
+<h2>Formulario Tutoria de Empleo</h2>
+<div class="row">
+    <div class="col-12 col-md-6-offset-md-3">
+        <form action="" class="formulario_Tutoria" method="post">
+            {% csrf_token %}
+        
+            {{ crispy }}
+            <div>
+                <p>Trabajas actualmete?</p>
+                {{ form.TrabajoActual | as_crispy_field }}
+            </div>
+
+            <div>
+                <p>Tu trabajo actual esta relacionado con la carrera que estudias?</p>
+                {{ form.TrabajoRelacionadoCarrera | as_crispy_field }}
+            </div>
+
+            <div>
+                <p>Cuantas horas trabajas a la semana?</p>
+                {{ form.HorasTrabajadasSemana }}
+            </div>
+            
+            <div>
+                <p>Por favor indica a cuanto asciende tu inrgeso mensual aproximadamente si trabajas:</p>
+                {{ form.HorasTrabajadasSemana | as_crispy_field }}
+            </div>
+
+            <div>
+                <p>Senala que tan importante es tu aportacion economica en tu hogar a partir de la siguiente escala</p>
+                {{ form.AportacionEconomicaImportancia | as_crispy_field }}
+            </div>
+
+
+
+
+
+            <div class="d-flex justify-content-center">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+#mensaje depues del boton
+{{mensaje}}
+
+{% endblock %}
