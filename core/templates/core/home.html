@@ -1,10 +1,61 @@
-<h1>Proyecto Modular - Home</h1>
-<h2>Prueba de cambios</h2>
-<ul>
-    <li><a href="/encuesta">Encuesta</a></li>
-    <li><a href="/survey_eduprog">Encuesta Programa Educativo</a></li>
-    <li><a href="/adicciones">Encuesta Adicciones</a></li>
-    <li><a href="/emprend">Encuesta Emprendimiento</a></li>
-    <li><a href="encuesta_empleo">Encuesta trabajo</a></li>
-    
-</ul>   
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/styles/main.css' %}">
+</head>
+<body> 
+   <header>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'libro.png' %}" alt="">
+            <h3>Asesoria</h3>
+        </div>
+        <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+   </header>
+
+
+   <div id="contenerdor">
+        <h1>Proyecto Modular - Home</h1>
+        <h2>Prueba de cambios</h2>
+        <ul>
+            <li><a href="/encuesta">Encuesta</a></li>
+            <li><a href="/survey_eduprog">Encuesta Programa Educativo</a></li>
+            <li><a href="/adicciones">Encuesta Adicciones</a></li>
+            <li><a href="/emprend">Encuesta Emprendimiento</a></li>
+            <li><a href="encuesta_empleo">Encuesta trabajo</a></li>
+            
+        </ul> 
+   </div>
+
+   
+   <footer>
+    <section id="footer">
+        <div class="container">
+            <div id="footer_izq">
+                <img src="{% static 'udg.png' %}" alt="">
+                <div>
+                    <p>Centro Universitario de Ciencias Exatas e Ingeniarias</p>
+                    <p>Blvd. Gral. Marcelino García Barragán N° 1421, Olímpica, c.p 44430 Guadalajara, Jal. 
+                        <br>Telefono: +52 (33) 1378 5900</p>
+                </div>
+            </div>
+            <div id="footer_der">
+                <img src="{% static 'cucei.png' %}" alt="">
+                <div><p>Redes sociales</p></div>
+            </div>
+        </div>
+    </section>
+   </footer>  
+</body>
+</html>
