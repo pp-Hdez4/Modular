@@ -90,9 +90,45 @@ IngresoMensual = [
     (2, "10,001 a $32,000"),
     (3, "32,001 a $81,000"),
     (4, "Mas de $81,000"),
-    
-    
 ]
+
+optionsRespons = [
+    (0, "Yo"),
+    (1, "Madre"),
+    (2, "Padre"),
+    (3, "Madre y Padre"),
+    (4, "Tutor legal"),
+    (5, "Hermanos, hermanas"),
+    (6, "Pareja"),
+    (7, "Otros"),
+]
+
+optionsVive = [
+    (0, "Sola/Solo"),
+    (1, "Pareja"),
+    (2, "Padres"),
+    (3, "En casa de asistencia o compartiendo vivienda con otras personas"),
+    (4, "Otro")
+]
+
+mediosTrs = [
+    (0, "Un solo medio de transporte público"),
+    (1, "Dos o más medios de transporte público"),
+    (2, "Automóvil"),
+    (3, "Bicicleta"),
+    (4, "Taxi"),
+    (5, "Uber"),
+    (6, "Otro"),
+]
+
+optionsTiempos = [
+    (0, "De 15 a 30 minutos"),
+    (1, "De 31 a 45 minutos"),
+    (2, "De 46 a 60 minutos"),
+    (3, "De 61 minutos a 2 horas"),
+    (4, "Más de dos horas"),
+]
+
 
 class TutoriaIngreso(models.Model):
     CodigoEstudiante = models.IntegerField()
@@ -160,3 +196,14 @@ class EmpleoIngresos(models.Model):
     IngresoMensualTrabajo = models.BooleanField("Por favor indica a cuanto asciende tu ingreso mensual aproximadamente si trabajas:", choices = IngresoMensual, default = 0)
     AportacionEconomicaImportancia = models.BooleanField("Senala que tan importante es su aportacion economica en tu hogar a partir de la siguiente escala:", choices = OpcionesPregunta, default = 0)
     
+class e_vivienda(models.Model):
+    responsable_ecnm = models.IntegerField("En tu hogar donde vives actualmente, ¿Quién es la persona responsable del mayor aporte económico?", choices = optionsRespons, default = 0)
+    viveAct = models.IntegerField("¿Con quién vives actualmente?", choices = optionsVive, default = 0)
+    otro_vive = models.CharField("", max_length=150)
+    apoyo_economico = models.IntegerField("¿Recibes algún apoyo económico? (como becas, subsidio, etc)", choices = rankingBool, default = 0)
+    is_foraneo = models.CharField("¿Eres foráneo? (Si la respuesta es ""Si"" especifica de que estado procedes)", max_length = 400)
+
+class e_tiemposTrs(models.Model):
+    medio_trns = models.IntegerField("¿Qué medio de transporte utilizas regularmente para trasladarte a CUCEI?", choices = mediosTrs, default = 0)
+    otro_trns = models.CharField("", max_length=150)
+    timetransport = models.IntegerField("¿Cuánto tiempo aproximadamente te toma llegar diario a CUCEI desde tu casa?", choices = optionsTiempos, default = 0)

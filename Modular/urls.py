@@ -26,4 +26,6 @@ urlpatterns = [
     path('emprend/', views.emprend, name = "emprend"),
     path('adicciones/', views.adiccion, name = "adicciones"),
     path('encuesta_empleo/', views.Empleo, name="Empleo"),
+    path('encuesta_vivienda/', views.vivienda_f, name = "vivienda"),
+    path('encuesta_tiempos', views.tiempos_f, name = "tiempos_transporte")
 ]
