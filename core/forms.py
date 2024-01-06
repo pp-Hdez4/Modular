@@ -1,6 +1,6 @@
 from django import forms
-from .models import TutoriaIngreso, EducationalProgram, emprendimiento, adicciones , EmpleoIngresos, e_vivienda, e_tiemposTrs
-
+from .models import TutoriaIngreso, EducationalProgram, emprendimiento, adicciones , EmpleoIngresos, e_vivienda, e_tiemposTrs, mpueblos_orig
+from .models import mpersonal, mdiscapacidad, mneurodiversidad, msalud, msaludmental
 #Formulario de tutoria de ingreso encuesta.html
 class TutoriaInicialForm(forms.ModelForm):
     class Meta:
@@ -88,7 +88,7 @@ class vivienda(forms.ModelForm):
             'viveAct': forms.RadioSelect(),
             'otro_vive' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
             'apoyo_economico': forms.RadioSelect(),
-            'is_foraneo': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'is_foraneo': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;', 'placeholder': 'Tu respuesta'}),
         }
 
 class tiemposTransporte(forms.ModelForm):
@@ -100,6 +100,80 @@ class tiemposTransporte(forms.ModelForm):
             'otro_trns' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
             'timetransport' : forms.RadioSelect(),
         }
+
+class pueblosOriginarios(forms.ModelForm):
+    class Meta:
+        model = mpueblos_orig
+        fields = '__all__'
+        widgets = {
+            'comunidad': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'lengua': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+        }
+
+class fpersonal(forms.ModelForm):
+    class Meta:
+        model = mpersonal
+        fields = '__all__'
+        widgets = {
+            'comunidadlgbt': forms.RadioSelect(),
+            'identidadGen': forms.RadioSelect(),
+            'other_identidad': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'hijos' : forms.RadioSelect(),
+            'hijoscuidado': forms.RadioSelect(),
+            'avanzcuidado': forms.RadioSelect(),
+        }
+
+class fdiscapacidad(forms.ModelForm):
+    class Meta:
+        model = mdiscapacidad
+        fields = '__all__'
+        widgets = {
+            'es_discapacidad' : forms.RadioSelect(),
+            'tipod' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;', 'placeholder': 'Tu respuesta'}),
+            'dispositivo_d' : forms.RadioSelect(),
+            'tiposdispositivod' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+        }
+
+class fneurodiversidad(forms.ModelForm):
+    class Meta:
+        model = mneurodiversidad
+        fields = '__all__'
+        widgets = {
+            'tipoNeurodiversidad' : forms.RadioSelect(),
+            'otrotipo_neuro' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'diagnostico' : forms.RadioSelect(),
+            'tratamiento' : forms.RadioSelect(),
+            
+        }
+
+class fsalud(forms.ModelForm):
+    class Meta:
+        model = msalud
+        fields = '__all__'
+        widgets = {
+            'tiposangre' : forms.RadioSelect(),
+            'otro_sangre' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'enfermedad_salud' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'alergias' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+        }
+
+class fsaludmental(forms.ModelForm):
+    class Meta:
+        model = msaludmental
+        fields = '__all__'
+        widgets = {
+            'suenio' : forms.RadioSelect(),
+            'cansancio' : forms.RadioSelect(),
+            'fobias' : forms.RadioSelect(),
+            'irritacion' : forms.RadioSelect(),
+            'ansiedad'  : forms.RadioSelect(),
+            'motivacion' : forms.RadioSelect(),
+            'pensamientos' : forms.RadioSelect(),
+            'tristeza' : forms.RadioSelect(),
+            'felicidad' : forms.RadioSelect(),
+            'terapia' : forms.RadioSelect(),
+        }
+
 
         # Personaliza el init para excluir campos específicos
         #Incluir los atributos de uno en uno del modelo

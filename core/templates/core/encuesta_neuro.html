@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<h1>Encuesta - Neurodiversidades</h1>
+<ul>
+    <li><a href="/">Home</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-12 col-md-6-offset-md-3">
+        <form action="" class="form_emprend">
+            {% csrf_token %}
+            <div>
+                {{ form.tipoNeurodiversidad | as_crispy_field }}
+            </div>
+            <div>
+                {{ form.otrotipo_neuro | as_crispy_field }}
+            </div>
+            <div>
+                {{ form.diagnostico | as_crispy_field }}
+                {{ form.tratamiento | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿Presentas alguna de las siguientes condiciones? (Puedes marcar más de una opción) </p>
+                {{ form.zurdo | as_crispy_field }}
+                {{ form.enfermedad_celiaca | as_crispy_field }}
+                {{ form.talla_baja | as_crispy_field }}
+                {{ form.is_not | as_crispy_field }}
+
+            </div>
+
+            <br>
+            <div class="d-flex justify-content-center">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+            
+        </form>
+        {{mensaje}}
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

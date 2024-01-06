@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import TutoriaInicialForm, EducationalProgram, emprendimiento, adicciones , EmpleoIngresosForm, vivienda, tiemposTransporte
-
+from .forms import pueblosOriginarios, fpersonal, fdiscapacidad, fneurodiversidad, fsalud, fsaludmental
 # Create your views here.
 
 def home(request):
@@ -58,3 +58,39 @@ def tiempos_f(request):
         'form': tiemposTransporte()
     }
     return render(request, "core/encuesta_tiempos.html", data)
+
+def pueblos_f(request):
+    data = {
+        'form' : pueblosOriginarios()
+    }
+    return render(request, 'core/encuesta_pueblos.html', data)  
+
+def personal_f(request):
+    data = {
+        'form' : fpersonal()
+    }
+    return render(request, "core/encuesta_personal.html", data)
+
+def discapacidad_f(request):
+    data = {
+        'form' : fdiscapacidad()
+    }
+    return render(request, 'core/encuesta_discapacidad.html', data)
+
+def neurodiversidad_f(request):
+    data = {
+        'form' : fneurodiversidad()
+    }
+    return render(request, 'core/encuesta_neuro.html', data)
+
+def salud_f(request):
+    data = {
+        'form' : fsalud()
+    }
+    return render(request, 'core/encuesta_salud.html', data)
+
+def saludmental_f(request):
+    data = {
+        'form' : fsaludmental()
+    }
+    return render(request, 'core/encuesta_saludm.html', data)
