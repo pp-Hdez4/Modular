@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import TutoriaInicialForm, EducationalProgram, emprendimiento, adicciones , EmpleoIngresosForm, vivienda, tiemposTransporte
-from .forms import pueblosOriginarios, fpersonal, fdiscapacidad, fneurodiversidad, fsalud, fsaludmental
+from .forms import pueblosOriginarios, fpersonal, fdiscapacidad, fneurodiversidad, fsalud, fsaludmental, ftics
 # Create your views here.
 
 def home(request):
@@ -94,3 +94,9 @@ def saludmental_f(request):
         'form' : fsaludmental()
     }
     return render(request, 'core/encuesta_saludm.html', data)
+
+def tics_f(request):
+    data = {
+        'form' : ftics()
+    }
+    return render(request, 'core/encuesta_tics.html', data)

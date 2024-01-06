@@ -1,6 +1,7 @@
 from django import forms
-from .models import TutoriaIngreso, EducationalProgram, emprendimiento, adicciones , EmpleoIngresos, e_vivienda, e_tiemposTrs, mpueblos_orig
-from .models import mpersonal, mdiscapacidad, mneurodiversidad, msalud, msaludmental
+from .models import TutoriaIngreso, EducationalProgram, emprendimiento, adicciones , EmpleoIngresos, e_vivienda, e_tiemposTrs, mpueblos_orig, mpersonal, mdiscapacidad, mneurodiversidad, msalud, msaludmental, maccesotics
+
+
 #Formulario de tutoria de ingreso encuesta.html
 class TutoriaInicialForm(forms.ModelForm):
     class Meta:
@@ -172,6 +173,22 @@ class fsaludmental(forms.ModelForm):
             'tristeza' : forms.RadioSelect(),
             'felicidad' : forms.RadioSelect(),
             'terapia' : forms.RadioSelect(),
+        }
+
+class ftics(forms.ModelForm):
+    class Meta:
+        model = maccesotics
+        fields = '__all__'
+        widgets = {
+            'internet' : forms.RadioSelect(),
+            'lugar_estudio' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'horas' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'nmaterias' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'horasclases' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'horaslibres' :forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'perfil' : forms.RadioSelect(),
+            'malla' : forms.RadioSelect(),
+            'materias_pre' : forms.RadioSelect(),
         }
 
 

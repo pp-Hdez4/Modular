@@ -33,5 +33,6 @@ urlpatterns = [
     path('encuesta_discapacidad/', views.discapacidad_f, name = "discapacidad"),
     path('encuesta_neurodiversidad/', views.neurodiversidad_f, name = "neurodiversidad"),
     path('encuesta_salud/', views.salud_f, name = "salud"),
-    path('encuesta_saludm/', views.saludmental_f, name = "salud_mental")
+    path('encuesta_saludm/', views.saludmental_f, name = "salud_mental"),
+    path('encuesta_tics/', views.tics_f, name = "tics")
 ]

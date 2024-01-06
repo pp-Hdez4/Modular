@@ -297,3 +297,19 @@ class msaludmental(models.Model):
     tristeza = models.IntegerField("Experimento tristeza", choices = opcionsaludmental, default = 1)
     felicidad = models.IntegerField("En general, me siento feliz", choices = opcionsaludmental, default = 1)
     terapia = models.IntegerField("¿Acudes a terapia psicológica o tratamiento psiquiátrico?", choices = rankingBool, default = 0)
+
+
+class maccesotics(models.Model):
+    pc = models.BooleanField("Computadora", default = False)
+    telefono = models.BooleanField("Télefono inteligente", default = False)
+    tableta = models.BooleanField("Tableta", default = False)
+    ninguno = models.BooleanField("Ninguno de los anteriores", default = False)
+    internet = models.IntegerField("¿Cuentas con internet propio?", choices = rankingBool, default = 1)
+    lugar_estudio = models.CharField("", max_length = 100)
+    horas = models.CharField("", max_length = 100)
+    nmaterias = models.CharField("", max_length = 10)
+    horasclases = models.CharField("", max_length = 10)
+    horaslibres = models.CharField("", max_length = 10)
+    perfil = models.IntegerField("¿Conoces el perfil de egreso de tu programa educativo?", choices = rankingBool, default = 1)
+    malla = models.IntegerField("¿Conoces la malla curricular de tu programa educativo?", choices = rankingBool, default = 1)
+    materias_pre = models.IntegerField("¿Sabes que materias llevan pre-requisito en tu malla curricular", choices = rankingBool, default = 1)
