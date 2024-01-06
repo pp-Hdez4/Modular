@@ -2,7 +2,7 @@
 
 {% block contenido %}
 {% load crispy_forms_tags %}
-<h1>Encuesta - Vivienda</h1>
+<h1>Encuesta - Pueblos Originarios</h1>
 <ul>
     <li><a href="/">Home</a></li>
 </ul>
@@ -11,8 +11,16 @@
     <div class="col-12 col-md-6-offset-md-3">
         <form action="" class="form_emprend">
             {% csrf_token %}
+            <div>
+                <p>¿Pertenece a una comunidad originaria? Si la respuesta es "si" específica cual: </p>
+                {{ form.comunidad | as_crispy_field }}
+            </div>
 
-            {{ form | crispy }}
+            <div>
+                <p>¿Hablas alguna lengua originaria?, de ser afirmativa la respuesta, específica: </p>
+                {{ form.lengua | as_crispy_field }}
+            </div>
+
             <br>
             <div class="d-flex justify-content-center">
                 <input type="reset" value="Cancelar" class="btn btn-secondary">

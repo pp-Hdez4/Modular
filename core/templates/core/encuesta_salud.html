@@ -2,7 +2,7 @@
 
 {% block contenido %}
 {% load crispy_forms_tags %}
-<h1>Encuesta - Vivienda</h1>
+<h1>Encuesta - Salud</h1>
 <ul>
     <li><a href="/">Home</a></li>
 </ul>
@@ -11,8 +11,21 @@
     <div class="col-12 col-md-6-offset-md-3">
         <form action="" class="form_emprend">
             {% csrf_token %}
+            <div>
+                {{ form.tiposangre| as_crispy_field }}
+            </div>
+            <div>
+                {{ form.otro_sangre | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿Tienes alguna enfermedad? Si la respuesta es "Si", específica ¿Cuál? y si ¿Aún esta activa? </p>
+                {{ form.enfermedad_salud | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿ Específica que alergias padeces, en caso de tenerla?</p>
+                {{ form.alergias | as_crispy_field }}
+            </div>
 
-            {{ form | crispy }}
             <br>
             <div class="d-flex justify-content-center">
                 <input type="reset" value="Cancelar" class="btn btn-secondary">
