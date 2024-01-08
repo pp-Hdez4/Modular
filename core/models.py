@@ -176,6 +176,13 @@ opcionsaludmental = [
     (5, "Siempre")
 ]
 
+opcionesestilos = [
+    (2, "Auditivo: Estilo se orienta más hacia la asimilación de información a través del oído, depende de escuchar y hablar como maneras principales para su aprendizaje, estas personas dialogan tanto como interna como externamente."),
+    (1, "Visual: Ocurre cuando uno tiende a pensar en imágenes y a relacionarlas con ideas y conceptos. Como por ejemplo cuando uno recurre a mapas conceptuales para recordar ideas, conceptos y procesos complejos. Por lo mismo, éste sistema está directamente relacionado con nuestra capacidad de abstracción y planificación."),
+    (3, "Knestésico: En otras palabras, es lo que ocurre cuando aprendemos más fácilmente al movernos y tocar las cosas, como cuando caminamos al recitar información o hacemos un experimento manipulando instrumentos de laboratorio."),
+]
+
+
 class TutoriaIngreso(models.Model):
     CodigoEstudiante = models.IntegerField()
     ApellidoPaterno = models.CharField(max_length=150)
@@ -313,3 +320,4 @@ class maccesotics(models.Model):
     perfil = models.IntegerField("¿Conoces el perfil de egreso de tu programa educativo?", choices = rankingBool, default = 1)
     malla = models.IntegerField("¿Conoces la malla curricular de tu programa educativo?", choices = rankingBool, default = 1)
     materias_pre = models.IntegerField("¿Sabes que materias llevan pre-requisito en tu malla curricular", choices = rankingBool, default = 1)
+    estilos_aprendizaje = models.IntegerField("", choices = opcionesestilos, default = 1)

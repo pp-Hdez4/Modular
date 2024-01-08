@@ -189,6 +189,7 @@ class ftics(forms.ModelForm):
             'perfil' : forms.RadioSelect(),
             'malla' : forms.RadioSelect(),
             'materias_pre' : forms.RadioSelect(),
+            'estilos_aprendizaje' : forms.RadioSelect(),
         }
 
 
