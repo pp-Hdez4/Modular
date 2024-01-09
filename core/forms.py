@@ -79,6 +79,28 @@ class EmpleoIngresosForm(forms.ModelForm):
                
         }    
 
+class vivienda(forms.ModelForm):
+    class Meta:
+        model = e_vivienda
+        fields = '__all__'
+        widgets = {
+            'responsable_ecnm': forms.RadioSelect(),
+            'viveAct': forms.RadioSelect(),
+            'otro_vive' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'apoyo_economico': forms.RadioSelect(),
+            'is_foraneo': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+        }
+
+class tiemposTransporte(forms.ModelForm):
+    class Meta:
+        model = e_tiemposTrs
+        fields = '__all__'
+        widgets = {
+            'medio_trns': forms.RadioSelect(),
+            'otro_trns' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+            'timetransport' : forms.RadioSelect(),
+        }
+
         # Personaliza el init para excluir campos específicos
         #Incluir los atributos de uno en uno del modelo
         #fields = ["CodigoEstudiante", "ApellidoPaterno", "ApellidoMaterno", "Nombres", "Telefono", "Genero", "ProgramaEducativo", "Municipio", "FechaNacimiento", "EstadoCivil", "importancia"]
