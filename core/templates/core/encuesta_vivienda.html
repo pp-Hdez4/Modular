@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<h1>Encuesta - Vivienda</h1>
+<ul>
+    <li><a href="/">Home</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-12 col-md-6-offset-md-3">
+        <form action="" class="form_emprend">
+            {% csrf_token %}
+
+            {{ form | crispy }}
+            <br>
+            <div class="d-flex justify-content-center">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+            
+        </form>
+        {{mensaje}}
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

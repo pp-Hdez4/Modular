@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<h1>Encuesta - Acceso a las Tics</h1>
+<ul>
+    <li><a href="/">Home</a></li>
+</ul>
+
+<div class="row">
+    <div class="col-12 col-md-6-offset-md-3">
+        <form action="" class="form_emprend">
+            {% csrf_token %}
+            <div>
+                <p>Señala si cuentas con alguno(s) de los siguientes dispositivos (puedes seleccionar más de una opción)</p>
+                {{ form.pc | as_crispy_field }}
+                {{ form.telefono | as_crispy_field }}
+                {{ form.tableta | as_crispy_field }}
+                {{ form.ninguno | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿Cual es tu estilo de aprendizaje?. Si tienes dudas respecto a tu estilo de aprendizaje, consulta la siguiente liga:</p>
+                <a href="https://blogs.unitec.mx/vida-universitaria/estilos-de-aprendizaje-visual-auditivo-y-kinestesico-cual-eres/" target="_blank">Estilos de Aprendizaje</a>
+                {{ form.estilos_aprendizaje | as_crispy_field}}
+            </div>
+            <div>
+                {{ form.internet | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿En qué lugares estudias normalmente?</p>
+                {{ form.lugar_estudio | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿Cuántas horas a la semana le dedicas a las actividades académicas de CUCEI, no consideres las horas de clase?</p>
+                {{ form.horas | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿Cuántas materias registraste en el ciclo 2023B?</p>
+                {{ form.nmaterias | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿Cuál es la suma de horas clase que tienes a la semana?</p>
+                {{ form.horasclases | as_crispy_field }}
+            </div>
+            <div>
+                <p>¿Cuántas horas libres tienes a la semana entre clases de tu horario?</p>
+                {{ form.horaslibres | as_crispy_field }}
+            </div>
+            <div>
+                {{ form.perfil | as_crispy_field }}
+                {{ form.malla | as_crispy_field }}
+                {{ form.materias_pre | as_crispy_field }}
+            </div>
+
+            <br>
+            <div class="d-flex justify-content-center">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+            </div>
+            
+        </form>
+        {{mensaje}}
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}
