@@ -26,7 +26,7 @@ class EducationalProgram(forms.ModelForm):
         model = EducationalProgram
         fields = '__all__'
         widgets = {
-            'Recomendacion':  forms.RadioSelect(),
+            'Recomendacion':  forms.RadioSelect(attrs={'class': 'text-primary','style': 'background-color: #fff;'}),
             'Plan_de_Estudios': forms.RadioSelect(),
             'Planta_Academica': forms.RadioSelect(),
             'Instalaciones': forms.RadioSelect(),
@@ -89,6 +89,9 @@ class vivienda(forms.ModelForm):
             'viveAct': forms.RadioSelect(),
             'otro_vive' : forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
             'apoyo_economico': forms.RadioSelect(),
+
+            'is_foraneo': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;'}),
+
             'is_foraneo': forms.TextInput(attrs={'class': 'form-control form-control-sm', 'style': 'width: 250px;', 'placeholder': 'Tu respuesta'}),
         }
 

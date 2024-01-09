@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block contenido %}
 {% load crispy_forms_tags %}
@@ -7,39 +8,108 @@
     <li><a href="/">Home</a></li>
 </ul>
 
-<div class="row">
-    <div class="col-12 col-md-6-offset-md-3">
-        <form action="" class="form_eduprog">
-            {% csrf_token %}
-        
-            {{ form.Recomendacion | as_crispy_field }}
-            Plan de Estudios
-            {{ form.Plan_de_Estudios }}
-            <div>
-                <p>Realizas actividades culturales o recreativas?</p>
-                {{ form.cinema | as_crispy_field }}
-                {{ form.museum | as_crispy_field }}
-                {{ form.reading | as_crispy_field }}
-                {{ form.cultural_fairs | as_crispy_field }}
-                {{ form.sports | as_crispy_field }}
-                {{ form.others | as_crispy_field }}
-            </div>
+<div class="container m-4">
+    <div class="row">
+        <div class="col-md-6">
+            <p>Aqui una imagen que ando buscando ¿</p>
+            <!-- Columna derecha -->
+            <!-- Agrega más campos o contenido aquí si es necesario -->
+        </div>
+        <div class="col-md-6">
+            <!-- Columna izquierda -->
+            <form action="" class="form_eduprog">
+                {% csrf_token %}
+                <p>Enumera en orden de importancia ¿Qué significa para ti haber ingresado a CUCEI? siendo el 1 el menos importante y el 6 el de mayor</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Recomendaciones</td>
+                            {% for radio in form.Recomendacion %}
+                            <td>{{radio.tag}}</td>
+                                {% endfor %}
+                        </tr>
+                    </tbody>
+
+                    <tbody>
+                        <tr>
+                            <td>Plan de Estudios</td>
+                            {% for radio in form.Plan_de_Estudios %}
+                            <td>{{radio.tag}}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+
+                    <tbody>
+                        <tr>
+                            <td>Planta Academica</td>
+                            {% for radio in form.Planta_Academica %}
+                            <td>{{radio.tag}}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+
+                    <tbody>
+                        <tr>
+                            <td>Instalaciones</td>
+                            {% for radio in form.Instalaciones %}
+                            <td>{{radio.tag}}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+
+                    <tbody>
+                        <tr>
+                            <td>Costos</td>
+                            {% for radio in form.Costos %}
+                            <td>{{radio.tag}}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+
+                    <tbody>
+                        <tr>
+                            <td>Horarios</td>
+                            {% for radio in form.Horarios %}
+                            <td>{{radio.tag}}</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
 
 
-            <br>
-            <div class="d-flex justify-content-center">
-                <input type="reset" value="Cancelar" class="btn btn-secondary">
-                &nbsp;
-                <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
-            </div>
-            
-        </form>
-        {{mensaje}}
+                </table>
 
+                <div class="form-group">
+                    <label class="pb-2">Realizas actividades culturales o recreativas?</label>
+                    {{ form.cinema | as_crispy_field }}
+                    {{ form.museum | as_crispy_field }}
+                    {{ form.reading | as_crispy_field }}
+                    {{ form.cultural_fairs | as_crispy_field }}
+                    {{ form.sports | as_crispy_field }}
+                    {{ form.others | as_crispy_field }}
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+                    <input type="reset" value="Cancelar" class="btn btn-secondary">
+                    &nbsp;
+                    <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+            {{ mensaje }}
+        </div>
     </div>
-
 </div>
-
 
 
 {% endblock %}
