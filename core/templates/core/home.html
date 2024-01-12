@@ -20,6 +20,12 @@
             <li><a href="#news">News</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#about">About</a></li>
+
+            {% if user.is_authenticated %}
+            <li>Usuario: {{ user.username }}</li>
+            {% endif %}
+
+            <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
         </ul>
     </nav>
    </header>
@@ -43,6 +49,7 @@
             <li><a href="/encuesta_salud">Encuesta Salud</a></li>
             <li><a href="/encuesta_saludm">Encuesta Salud Mental</a></li>
             <li><a href="/encuesta_tics">Encuesta Acceso a las Tics</a></li>
+            
         </ul> 
    </div>
 
