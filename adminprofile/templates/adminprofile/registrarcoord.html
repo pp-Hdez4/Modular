@@ -3,15 +3,15 @@
 {% block contenido %}
 {% load crispy_forms_tags %}
 
-<h1>Registro de Estudiante Contraseña</h1>
+<h1>Registrar nueva coordinacion</h1>
 
 <form action = "" method = "POST">
     {% csrf_token %}
     {{ form | crispy }}
 
-<input type="reset" value="Atras" class="btn btn-secondary">
+<input type="reset" value="Limpiar" class="btn btn-secondary">
 
-<button type="submit" value="Siguiente" class="btn btn-primary">Siguiente</button>
+<button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
 
 </form>
 

@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from core import views
 from accounts import views as vaccount
+from adminprofile import views as vadmin
+from globalcore import views as vglobal
 
 urlpatterns = [
     path('', views.home, name="home"),
@@ -41,7 +43,13 @@ urlpatterns = [
 
     #accounts
     path('signup/', vaccount.nuevoUsuario , name = 'signup'),
-    path('signup_student/', vaccount.estudianteView, name = 'signup_estudent'),
-    path('signup_student2', vaccount.passwordViewEstudiante, name = 'signup_student2'),
-    path('login_user/', vaccount.login_userV, name = 'login_user')
+    path('perfilestudiante/', vaccount.estudianteView, name = 'perfilestudiante'),
+    path('perfiltutor/', vaccount.tutorView, name = 'perfiltutor'),
+    path('login_user/', vaccount.login_userV, name = 'login_user'),
+
+    #admin profile
+    path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
+
+    #globalcore
+    path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' )
 ]

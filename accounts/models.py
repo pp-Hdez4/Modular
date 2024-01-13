@@ -29,16 +29,15 @@ opciones_carreras = [
     ['QFB', 'Quimico Farmaceutico Biólogo']
 ]
 
-
-
 class usuario(models.Model):
     #id automatico
     codigo_udg = models.CharField(max_length = 10)
     correo = models.CharField(max_length = 100)
     password = models.CharField(max_length = 10)
     rol = models.IntegerField()
-    activo = models.BooleanField()
+    activo = models.BooleanField(default = False)
     fecha_registro = models.CharField(max_length = 8)
+    perfil = models.BooleanField(default = False)
 
 class estudiante(models.Model):
     #id automatico
@@ -62,4 +61,14 @@ class estudiante(models.Model):
     sexo = models.IntegerField(choices = OpcionesGenero, default = 1)
     municipio = models.CharField(max_length = 100)
 
+    ciclo_actual = models.CharField(max_length = 3)
+    ciclo_ingreso = models.CharField(max_length = 3)
+
+class tutor(models.Model):
+    #id automatico
+    nombre = models.CharField("Nombre: ", max_length = 100)
+    apellido_m = models.CharField("Apellido Materno", max_length = 100)
+    apellido_p = models.CharField("Apellido Paterno", max_length = 100)
+
+    coordinacion_id = models.IntegerField()
 
