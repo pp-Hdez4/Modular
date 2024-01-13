@@ -25,4 +25,18 @@ class usuarioEstudianteForm2(ModelForm):
         fields = ['password']
 
 
+class loginusuarioForm(ModelForm):
+    class Meta:
+        model = usuario
+        fields = ['codigo_udg', 'password']
+        widgets = {
+            'codigo_udg': forms.TextInput(attrs={ 'placeholder': 'Codigo Universidad de Guadalajara'}),
+            'password' : forms.TextInput(attrs={ 'placeholder': 'Contraseña', 'type': 'password'}),
+        }
+        labels = {
+        'codigo_udg': '',
+        'password' : '',
+        # Puedes personalizar otras etiquetas aquí
+        }
+
 

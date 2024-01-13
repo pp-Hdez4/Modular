@@ -42,5 +42,6 @@ urlpatterns = [
     #accounts
     path('signup/', vaccount.nuevoUsuario , name = 'signup'),
     path('signup_student/', vaccount.estudianteView, name = 'signup_estudent'),
-    path('signup_student2', vaccount.passwordViewEstudiante, name = 'signup_student2')
+    path('signup_student2', vaccount.passwordViewEstudiante, name = 'signup_student2'),
+    path('login_user/', vaccount.login_userV, name = 'login_user')
 ]
