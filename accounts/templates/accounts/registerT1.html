@@ -3,16 +3,13 @@
 {% block contenido %}
 {% load crispy_forms_tags %}
 
-<h1>Perfil de Estudiante</h1>
-
-
-<p>¡Bienvenido al Sistema de Accion Tutorial! Por favor, completa tu perfil</p>
+<h1>Perfil de Tutor</h1>
 
 <form action = "" method = "POST">
     {% csrf_token %}
     {{ form | crispy }}
 
-<input type="reset" value="Limpiar" class="btn btn-secondary">
+<input type="reset" value="Atras" class="btn btn-secondary">
 
 <button type="submit" value="Siguiente" class="btn btn-primary">Siguiente</button>
 
