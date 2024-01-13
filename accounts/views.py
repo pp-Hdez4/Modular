@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import usuarioForm1, usuarioEstudianteForm1, usuarioEstudianteForm2
+from .forms import usuarioForm1, usuarioEstudianteForm1, usuarioEstudianteForm2, loginusuarioForm
 import re
 
 from datetime import datetime
@@ -98,3 +98,11 @@ def passwordViewEstudiante(request):
     data['mensaje'] = datos_temporales1.get('codigo_udg', '') + datos_temporales2.get('nombre', '')
 
     return render(request, 'accounts/registerE2.html', data)
+
+
+def login_userV(request):
+
+    data = {
+        'form' : loginusuarioForm()
+    }
+    return render(request, 'accounts/login.html', data)
