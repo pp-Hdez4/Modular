@@ -1,11 +1,11 @@
 from django.forms import ModelForm
 from django import forms
-from .models import asesoria , reporte
+from .models import reporte
 
-class solicitarAsesoriaForm(ModelForm):
+"""class solicitarAsesoriaForm(ModelForm):
     class Meta:
         model = asesoria
-        fields = ['calendario', 'motivo']
+        fields = ['calendario', 'motivo']"""
         
 class crearReporteForm(ModelForm):
     class Meta:

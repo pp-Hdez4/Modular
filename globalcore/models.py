@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class asesoria(models.Model):
+"""class asesoria(models.Model):
     #id automatico
     id_estudiante = models.IntegerField()
     id_tutor = models.IntegerField()
@@ -12,7 +12,7 @@ class asesoria(models.Model):
     
     status = models.IntegerField()
     calendario = models.CharField(max_length = 20)
-    motivo = models.TextField()
+    motivo = models.TextField()"""
     
 class reporte(models.Model):
     id_estudiante = models.IntegerField()

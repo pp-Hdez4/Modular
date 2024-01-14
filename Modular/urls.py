@@ -22,7 +22,7 @@ from adminprofile import views as vadmin
 from globalcore import views as vglobal
 
 urlpatterns = [
-    path('', views.home, name="home"),
+    #path('', views.home, name="home"),
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('encuesta/', views.encuesta, name="encuesta"),
@@ -51,7 +51,8 @@ urlpatterns = [
     path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
 
     #globalcore
-    path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),
+
+    #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
     path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),
     
 ]

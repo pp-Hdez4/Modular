@@ -23,7 +23,8 @@ p{
 
 nav {
     padding: 10px;
-    color: black;
+    background-color: #0A152B;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
