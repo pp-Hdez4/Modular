@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import solicitarAsesoriaForm
+from .forms import solicitarAsesoriaForm, crearReporteForm
 # Create your views here.
 
 
@@ -8,3 +8,9 @@ def solicitarAsesoriaView(request):
         'form' : solicitarAsesoriaForm()
     }
     return render(request, 'globalcore/asesorianueva.html', data)
+
+def crearReporteView(request):
+    data = {
+        'form' : crearReporteForm()
+    }
+    return render(request, 'globalcore/crearReporte.html', data)
