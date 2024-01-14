@@ -1,14 +1,16 @@
 from django.shortcuts import render
-from .forms import solicitarAsesoriaForm
+from .forms import  crearReporteForm
 # Create your views here.
 
 
-def solicitarAsesoriaView(request):
+"""def solicitarAsesoriaView(request):
     data = {
         'form' : solicitarAsesoriaForm()
     }
-    return render(request, 'globalcore/asesorianueva.html', data)
+    return render(request, 'globalcore/asesorianueva.html', data)"""
 
-def homeView(request):
-    
-    return render(request, 'globalcore/home.html')
+def crearReporteView(request):
+    data = {
+        'form' : crearReporteForm()
+    }
+    return render(request, 'globalcore/crearReporte.html', data)
