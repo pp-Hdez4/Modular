@@ -8,3 +8,7 @@ def solicitarAsesoriaView(request):
         'form' : solicitarAsesoriaForm()
     }
     return render(request, 'globalcore/asesorianueva.html', data)
+
+def homeView(request):
+    
+    return render(request, 'globalcore/home.html')
