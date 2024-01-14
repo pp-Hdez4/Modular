@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import  crearReporteForm
 # Create your views here.
 
-
+#solucion rama daniel
 """def solicitarAsesoriaView(request):
     data = {
         'form' : solicitarAsesoriaForm()
