@@ -61,8 +61,8 @@ class estudiante(models.Model):
     sexo = models.IntegerField(choices = OpcionesGenero, default = 1)
     municipio = models.CharField(max_length = 100)
 
-    ciclo_actual = models.CharField(max_length = 3)
-    ciclo_ingreso = models.CharField(max_length = 3)
+    ciclo_actual = models.CharField(max_length = 3, default='')
+    ciclo_ingreso = models.CharField(max_length = 3, default='')
 
 class tutor(models.Model):
     #id automatico
