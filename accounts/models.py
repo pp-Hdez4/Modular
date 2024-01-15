@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
@@ -29,46 +30,68 @@ opciones_carreras = [
     ['QFB', 'Quimico Farmaceutico Biólogo']
 ]
 
-class usuario(models.Model):
+opcionesCalendario = [
+    ('18B', '2018B'),
+    ('19A', '2019A'),
+    ('19B', '2019B'),
+]
+
+calendarioActual = [
+    ('24A', '2024B')
+]
+
+class ProgramaEducativo(models.Model):
     #id automatico
-    codigo_udg = models.CharField(max_length = 10)
+    nombre = models.CharField("Nombre: ", max_length = 100)
+    correo = models.CharField("Nombre: ", max_length = 100)
+
+    def __str__(self):
+        return self.nombre
+
+class Division(models.Model):
+    #id automatico
+    nombre = models.CharField("Nombre: ", max_length = 100)
+
+class Usuario(models.Model):
+    
+    codigo_udg = models.CharField(max_length = 10, primary_key = True)
     correo = models.CharField(max_length = 100)
     password = models.CharField(max_length = 10)
     rol = models.IntegerField()
-    activo = models.BooleanField(default = False)
-    fecha_registro = models.CharField(max_length = 8)
-    perfil = models.BooleanField(default = False)
 
-class estudiante(models.Model):
-    #id automatico
-    nombre = models.CharField("Nombre: ", max_length = 100)
-    apellido_m = models.CharField("Apellido Materno", max_length = 100)
-    apellido_p = models.CharField("Apellido Paterno", max_length = 100)
-
-    carrera = models.CharField("Selecciona carrera: ",max_length = 100, choices = opciones_carreras, default = 'LFI')
-
-    #fecha de nacimiento
-    dia = models.CharField(max_length = 2)
-    mes = models.CharField(max_length = 2)
-    anio = models.CharField(max_length = 2, verbose_name = "Año")
+    nombre = models.CharField("", max_length = 100)
+    apellido_m = models.CharField("", max_length = 100)
+    apellido_p = models.CharField("", max_length = 100)
 
     fecha_nacimiento = models.DateField()
-
-    #contacto
-    telefono = models.CharField(max_length = 10)
-
-    estadocivil = models.IntegerField(choices = OpcionesEstadoCivil, default = 1)
+    activo = models.BooleanField(default = True)
+    fecha_registro = models.DateField(auto_now_add=True)
+    perfil = models.BooleanField(default = False)
     sexo = models.IntegerField(choices = OpcionesGenero, default = 1)
-    municipio = models.CharField(max_length = 100)
 
-    ciclo_actual = models.CharField(max_length = 3, default='')
-    ciclo_ingreso = models.CharField(max_length = 3, default='')
+    def save(self, *args, **kwargs):
+        # Asigna la fecha actual al campo fecha_registro al guardar el objeto
+        self.fecha_registro = datetime.today().date()
+        super().save(*args, **kwargs)
 
-class tutor(models.Model):
+class Estudiante(models.Model):
     #id automatico
-    nombre = models.CharField("Nombre: ", max_length = 100)
-    apellido_m = models.CharField("Apellido Materno", max_length = 100)
-    apellido_p = models.CharField("Apellido Paterno", max_length = 100)
+    codigo_udg = models.ForeignKey(Usuario, on_delete = models.CASCADE) #llave foranea
+    career =  models.ForeignKey(ProgramaEducativo, on_delete=models.CASCADE, default = 1)
+    #datos escolares
+    ciclo_admision = models.CharField(choices = opcionesCalendario,max_length = 3, default='18B')
+    ciclo_actual = models.CharField("",max_length = 3, default = '', blank = False)
+    #datos personales
+    telefono = models.CharField("",max_length = 10)
+    asesorado = models.BooleanField(default = False)
+    residencia = models.CharField("",max_length = 150)
+    estado_civil = models.IntegerField(choices = OpcionesEstadoCivil, default = 1)
 
-    coordinacion_id = models.IntegerField()
+class Tutor(models.Model):
+    #id automatico
+    #llave foranea
+    codigo_udg = models.ForeignKey(Usuario, on_delete = models.CASCADE)
+    #datos tutor especiales
+    alumnos_n = models.IntegerField()
+    division_id = models.ForeignKey(Division, on_delete=models.CASCADE)
 
