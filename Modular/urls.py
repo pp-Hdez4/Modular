@@ -51,6 +51,7 @@ urlpatterns = [
     path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
 
     #globalcore
+    path('home_student/', vaccount.home_student, name = 'home_student'),
 
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
     path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),
