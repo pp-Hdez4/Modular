@@ -59,5 +59,6 @@ urlpatterns = [
     
     #chatbot
     path('chat/', vchat.ChatPage , name= "chatbot"),
+    path('getResponse', vchat.getResponse, name= "getResponse"),
     
 ]
