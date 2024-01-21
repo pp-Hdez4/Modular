@@ -30,33 +30,24 @@
 
 
 
-<script>
-    function getUserResponse(){
-        var userText = $('#textInput').val();
-        var userHTML = "<p class='userText'>User: <span>"+userText+"</span></p>";
-        $('#textInput').val("");
-
-        $('#chatbot').append(userHTML);
-
-        $.get('/getResponse', {userMessage:userText}).done(function(data){
-
-            var returnedMessage = "<p class='botText'>Chatbot: <span>"+ data +"</span></p>";
-            $('#chatbot').append(returnedMessage);
-
-        })
-
-
-        
-    }
-    $('#buttonInput').click(function(){
+    <script>
+        function getUserResponse() {
+            var userText = $('#textInput').val();
+            var userHTML = "<p class='userText'>User: <span>" + userText + "</span></p>";
+            $('#textInput').val("");
+    
+            $('#chatbot').append(userHTML);
+    
+            $.get('/getResponse', {userMessage: userText}).done(function (data) {
+                var returnedMessage = "<p class='botText'>Chatbot: <span>" + data.botResponse + "</span></p>";
+                $('#chatbot').append(returnedMessage);
+            });
+        }
+    
+        $('#buttonInput').click(function () {
             getUserResponse();
-
-
-        })
-
-
-
-</script>
+        });
+    </script>
 
 </body>
 </html>
