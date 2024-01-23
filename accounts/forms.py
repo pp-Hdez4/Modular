@@ -49,9 +49,6 @@ class usuarioEstudianteForm1(ModelForm):
         # Personaliza el campo 'autor' para cargar opciones desde la tabla de autores
             self.fields['career'].queryset = ProgramaEducativo.objects.all()
 
-            primer_autor = ProgramaEducativo.objects.first()
-            if primer_autor:
-                self.fields['career'].widget.choices = [(primer_autor.id, primer_autor)] + list(self.fields['career'].widget.choices)[1:]
 
 class usuarioTutorForm1(ModelForm):
     class Meta:

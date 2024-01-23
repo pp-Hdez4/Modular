@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -94,4 +96,8 @@ class Tutor(models.Model):
     #datos tutor especiales
     alumnos_n = models.IntegerField()
     division_id = models.ForeignKey(Division, on_delete=models.CASCADE)
+
+
+
+
 
