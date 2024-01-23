@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'adminprofile',
     'globalcore',
-    #'accounts.apps.AccountsConfig', #gestion de usuarios, definido en apps.py de accounts
+    'chatbot',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

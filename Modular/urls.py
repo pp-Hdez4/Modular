@@ -20,6 +20,7 @@ from core import views
 from accounts import views as vaccount
 from adminprofile import views as vadmin
 from globalcore import views as vglobal
+from chatbot import views as vchat
 
 urlpatterns = [
     #path('', views.home, name="home"),
@@ -55,5 +56,9 @@ urlpatterns = [
 
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
     path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),
+    
+    #chatbot
+    path('chat/', vchat.ChatPage , name= "chatbot"),
+    path('getResponse', vchat.getResponse, name= "getResponse"),
     
 ]
