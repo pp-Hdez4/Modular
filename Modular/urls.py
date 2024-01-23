@@ -23,7 +23,7 @@ from globalcore import views as vglobal
 from chatbot import views as vchat
 
 urlpatterns = [
-    #path('', views.home, name="home"),
+    path('', views.home, name="home"),
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('encuesta/', views.encuesta, name="encuesta"),
