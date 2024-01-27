@@ -27,8 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Application definition
 
@@ -79,9 +79,17 @@ TEMPLATES = [
         },
     },
 ]
+#mail settings
+#wese cuad jhit iezz
+#acciontutorial.cucei@gmail.com
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'acciontutorial.cucei@gmail.com' # Coloca aquí tu dirección de Gmail
+EMAIL_HOST_PASSWORD = 'wese cuad jhit iezz' # Coloca aquí tu contraseña de Gmail
 
 WSGI_APPLICATION = 'Modular.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

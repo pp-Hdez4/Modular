@@ -17,13 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core import views
-from accounts import views as vaccount
+from accounts import views as vaccount 
+from accounts.views import CustomLoginView
 from adminprofile import views as vadmin
 from globalcore import views as vglobal
 from chatbot import views as vchat
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    #path('', views.home, name="home"),
+    path('', views.home, name="home"),
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('encuesta/', views.encuesta, name="encuesta"),
@@ -47,6 +49,12 @@ urlpatterns = [
     path('perfilestudiante/', vaccount.estudianteView, name = 'perfilestudiante'),
     path('perfiltutor/', vaccount.tutorView, name = 'perfiltutor'),
     path('login_user/', vaccount.login_userV, name = 'login_user'),
+    path('register/', vaccount.registerUser, name='register'),
+    path('perfil1/', vaccount.registerStudent, name = 'Perfil1'),
+    path('perfil1/verificacion/', vaccount.VerificarEstudiante, name = 'Verificar1'),
+    path('login/', CustomLoginView.as_view(), name = 'login'),
+    path('accounts/logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    #path('perfil2/', vaccount.regist)
 
     #admin profile
     path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
