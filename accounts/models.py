@@ -79,52 +79,6 @@ class PerfilTutor(models.Model):
     fecha_nacimiento = models.DateField() #fecha de nacimiento
     depto = models.CharField(choices = deptos, default = 1, max_length = 100)
 
-class Usuario(models.Model):
-    
-    codigo_udg = models.CharField(max_length = 10, primary_key = True)
-    correo = models.CharField(max_length = 100)
-    password = models.CharField(max_length = 10)
-    rol = models.IntegerField()
-
-    nombre = models.CharField("", max_length = 100)
-    apellido_m = models.CharField("", max_length = 100)
-    apellido_p = models.CharField("", max_length = 100)
-
-    fecha_nacimiento = models.DateField()
-    activo = models.BooleanField(default = True)
-    fecha_registro = models.DateField(auto_now_add=True)
-    perfil = models.BooleanField(default = False)
-    sexo = models.IntegerField(choices = OpcionesGenero, default = 1)
-
-    def save(self, *args, **kwargs):
-        # Asigna la fecha actual al campo fecha_registro al guardar el objeto
-        self.fecha_registro = datetime.today().date()
-        super().save(*args, **kwargs)
-
-class Estudiante(models.Model):
-    #id automatico
-    codigo_udg = models.ForeignKey(Usuario, on_delete = models.CASCADE) #llave foranea
-    career =  models.ForeignKey(ProgramaEducativo, on_delete=models.CASCADE, default = 1)
-    #datos escolares
-    ciclo_admision = models.CharField(choices = opcionesCalendario,max_length = 3, default='18B')
-    ciclo_actual = models.CharField("",max_length = 3, default = '', blank = False)
-    #datos personales
-    telefono = models.CharField("",max_length = 10)
-    asesorado = models.BooleanField(default = False)
-    residencia = models.CharField("",max_length = 150)
-    estado_civil = models.IntegerField(choices = OpcionesEstadoCivil, default = 1)
-
-class Tutor(models.Model):
-    #id automatico
-    #llave foranea
-    codigo_udg = models.ForeignKey(Usuario, on_delete = models.CASCADE)
-    #datos tutor especiales
-    alumnos_n = models.IntegerField()
-    division_id = models.ForeignKey(Division, on_delete=models.CASCADE)
-
-
-
-
 
 
 
