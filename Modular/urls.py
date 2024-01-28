@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core import views
-from accounts import views as vaccount
+from accounts import views as vaccount 
+from accounts.views import CustomLoginView
 from adminprofile import views as vadmin
 from globalcore import views as vglobal
 from chatbot import views as vchat
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', views.home, name="home"),
@@ -43,16 +45,18 @@ urlpatterns = [
     path('encuesta_tics/', views.tics_f, name = "tics"),
 
     #accounts
-    path('signup/', vaccount.nuevoUsuario , name = 'signup'),
-    path('perfilestudiante/', vaccount.estudianteView, name = 'perfilestudiante'),
-    path('perfiltutor/', vaccount.tutorView, name = 'perfiltutor'),
-    path('login_user/', vaccount.login_userV, name = 'login_user'),
+
+    path('register/', vaccount.registerUser, name='register'),
+    path('perfil1/', vaccount.registerStudent, name = 'Perfil1'),
+    path('perfil1/verificacion/', vaccount.VerificarEstudiante, name = 'Verificar1'),
+    path('perfil2/', vaccount.registerTutor, name = 'Perfil2'),
+    path('perfil2/verificacion/', vaccount.VerificarTutor, name = 'Verificar2'),
+    path('login/', CustomLoginView.as_view(), name = 'login'),
+    path('accounts/logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    
 
     #admin profile
     path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
-
-    #globalcore
-    path('home_student/', vaccount.home_student, name = 'home_student'),
 
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
     path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),

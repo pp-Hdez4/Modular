@@ -25,7 +25,12 @@
             <li>Usuario: {{ user.username }}</li>
             {% endif %}
 
-            <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+            <li><form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Cerrar sesión</button>
+                </form>
+                </li>
+                <!---- a href="{% url 'logout' %}">Cerrar Sesion</a></li ----->
         </ul>
     </nav>
    </header>

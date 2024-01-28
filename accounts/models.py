@@ -1,6 +1,9 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 roles = [
@@ -40,6 +43,10 @@ calendarioActual = [
     ('24A', '2024B')
 ]
 
+deptos = [
+    ('INNI', 'Informatica'),
+]
+
 class ProgramaEducativo(models.Model):
     #id automatico
     nombre = models.CharField("Nombre: ", max_length = 100)
@@ -52,46 +59,27 @@ class Division(models.Model):
     #id automatico
     nombre = models.CharField("Nombre: ", max_length = 100)
 
-class Usuario(models.Model):
-    
-    codigo_udg = models.CharField(max_length = 10, primary_key = True)
-    correo = models.CharField(max_length = 100)
-    password = models.CharField(max_length = 10)
-    rol = models.IntegerField()
-
-    nombre = models.CharField("", max_length = 100)
-    apellido_m = models.CharField("", max_length = 100)
-    apellido_p = models.CharField("", max_length = 100)
-
-    fecha_nacimiento = models.DateField()
-    activo = models.BooleanField(default = True)
-    fecha_registro = models.DateField(auto_now_add=True)
-    perfil = models.BooleanField(default = False)
-    sexo = models.IntegerField(choices = OpcionesGenero, default = 1)
-
-    def save(self, *args, **kwargs):
-        # Asigna la fecha actual al campo fecha_registro al guardar el objeto
-        self.fecha_registro = datetime.today().date()
-        super().save(*args, **kwargs)
-
-class Estudiante(models.Model):
-    #id automatico
-    codigo_udg = models.ForeignKey(Usuario, on_delete = models.CASCADE) #llave foranea
-    career =  models.ForeignKey(ProgramaEducativo, on_delete=models.CASCADE, default = 1)
-    #datos escolares
+class PerfilEstudiante(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE) #llave de usuario foranea
+    codigo_verificar = models.CharField(max_length = 10) #codigo de verificacion
+    carrera = models.CharField(choices = opciones_carreras, default = 1, max_length = 100) #carrera de estudiante
+    sexo = models.IntegerField(choices = OpcionesGenero, default = 1) #sexo
+    fecha_nacimiento = models.DateField() #fecha de nacimiento
+    asesorado = models.BooleanField(default = False) #status del asesorado
+    telefono = models.CharField("",max_length = 10) #numero telefonico
+    estado_civil = models.IntegerField(choices = OpcionesEstadoCivil, default = 1) #estado civil
+    residencia = models.CharField("",max_length = 150) #lugar de residencia
     ciclo_admision = models.CharField(choices = opcionesCalendario,max_length = 3, default='18B')
     ciclo_actual = models.CharField("",max_length = 3, default = '', blank = False)
-    #datos personales
-    telefono = models.CharField("",max_length = 10)
-    asesorado = models.BooleanField(default = False)
-    residencia = models.CharField("",max_length = 150)
-    estado_civil = models.IntegerField(choices = OpcionesEstadoCivil, default = 1)
 
-class Tutor(models.Model):
-    #id automatico
-    #llave foranea
-    codigo_udg = models.ForeignKey(Usuario, on_delete = models.CASCADE)
-    #datos tutor especiales
-    alumnos_n = models.IntegerField()
-    division_id = models.ForeignKey(Division, on_delete=models.CASCADE)
+class PerfilTutor(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE) #llave de usuario foranea
+    codigo_verificar = models.CharField(max_length = 10) #codigo de verificacion
+    sexo = models.IntegerField(choices = OpcionesGenero, default = 1) #sexo
+    fecha_nacimiento = models.DateField() #fecha de nacimiento
+    depto = models.CharField(choices = deptos, default = 1, max_length = 100)
+
+
+
+
 
