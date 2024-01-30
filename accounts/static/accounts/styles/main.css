@@ -137,3 +137,9 @@ nav a.active {
 table{
     background-color: #0A152B;
 }
+
+.tabla-asesorias {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro, opcional */
+    /* Otros estilos que desees aplicar */
+}
