@@ -12,4 +12,7 @@ class crearReporteForm(ModelForm):
         model = reporte
         fields = ['titulo', 'situacion']
         
+        
+
+        
 

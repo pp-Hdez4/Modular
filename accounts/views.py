@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import UserRegisterForm, PerfilEstudianteForm, PerfilTutorForm, VerificacionEstudianteForm, VerificacionTutorForm,LoginForm
+from .forms import UserRegisterForm, PerfilEstudianteForm, PerfilTutorForm, VerificacionEstudianteForm, VerificacionTutorForm,LoginForm, solicitarAsesoriaForm
 from django.http import HttpRequest
-from .models import PerfilEstudiante, PerfilTutor
+from .models import PerfilEstudiante, PerfilTutor, Asesoria
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 #from .forms import InformacionForm
@@ -248,4 +248,35 @@ def VerificarTutor(request):
                 data['mensaje'] = 'El codigo no coincide, intenta de nuevo'
 
     return render(request, 'registration/verificaciont.html', data)
+
+
+def solicitarAsesoria_View(request):
+    if request.user.is_authenticated:
+        alumno_id = request.user.id
+    tutor = User.objects.get(id=1)  # Obtener el tutor por su ID
+
+    data = {'form': solicitarAsesoriaForm()}
+
+    if request.method == 'POST':
+        form = solicitarAsesoriaForm(request.POST)
+        if form.is_valid():
+            descripcion = form.cleaned_data['descripcion']
+            materia = form.cleaned_data['materia']
+
+            nueva_asesoria = Asesoria.objects.create(
+                alumno_id=alumno_id,
+                tutor=tutor,
+                descripcion=descripcion,
+                materia=materia
+            )
+            # Guardar los datos en la base de datos
+            nueva_asesoria.save()
+
+            data["mensaje"] = "Asesoría solicitada correctamente."
+        else:
+            data["form"] = form  # Usar el formulario con errores si no es válido
+
+    return render(request, 'accounts/asesoria.html', data)
+    
+   
 

@@ -1,6 +1,6 @@
 
 from django.forms import ModelForm
-from .models import ProgramaEducativo, PerfilEstudiante, PerfilTutor
+from .models import ProgramaEducativo, PerfilEstudiante, PerfilTutor, Asesoria
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -108,3 +108,14 @@ class VerificacionTutorForm(ModelForm):
         labels = {
             'codigo_verificar' : '', 
         }
+        
+#Registro asesoria
+class solicitarAsesoriaForm(ModelForm):
+    class Meta:
+        model = Asesoria
+        fields = [ 'descripcion', 'materia' ]
+        widgets = {
+            'descripcion' : forms.TextInput(attrs={ 'placeholder': 'Descripcion de la asesoria'})
+        }
+        
+        
