@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+{% block contenido %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Asesorías del Tutor</title>
+</head>
+<body>
+    <div class="table-responsive">
+        <h1>Listado de Asesorías pendientes</h1>
+        <form method="get" action="{% url 'mostrar_asesorias' %}">
+            <div class="d-flex">
+                <label for="filtro_tutor_id" class="me-2">Filtrar asesorías:</label>
+                <select name="filtro_tutor_id" id="filtro_tutor_id" class="form-select me-2" style="width: 200px;" aria-label="Default select example">
+                    <option value="">Todas las asesorías</option>
+                    <option value="1">Asesorías pendientes</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+        </form>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Materia</th>
+                    <th scope="col">Tutor</th>
+                    <th scope="col">Asignar asesoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asesoria in asesorias %}
+                    <tr>
+                        <td>{{ asesoria.alumno.first_name }} {{ asesoria.alumno.last_name }}</td>
+                        <td>{{ asesoria.descripcion }}</td>
+                        <td>{{ asesoria.materia }}</td>
+                        <td>
+                            {% if asesoria.tutor.id == 1 %}
+                                Pendiente de asignación
+                            {% else %}
+                                {{ asesoria.tutor.first_name }} {{ asesoria.tutor.last_name }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'actualizar_asesoria' asesoria_id=asesoria.id %}">
+                                {% csrf_token %}
+                                <select name="TutorID">
+                                    {% for tutor in tutores %}
+                                        <option value="{{ tutor.id }}">
+                                            {% if tutor.id == 1 %}
+                                                Pendiente de asignación
+                                            {% else %}
+                                                {{ tutor.first_name }} {{ tutor.last_name }}
+                                            {% endif %}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit">Asignar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+{% endblock %}

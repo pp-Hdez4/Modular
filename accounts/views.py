@@ -22,6 +22,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import UserRegistrationForm
+from django.shortcuts import render, redirect, get_object_or_404
+
 
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
@@ -277,6 +279,27 @@ def solicitarAsesoria_View(request):
             data["form"] = form  # Usar el formulario con errores si no es válido
 
     return render(request, 'accounts/asesoria.html', data)
-    
-   
 
+
+
+def mostrarAsesorias(request):
+    grupo_tutores = Group.objects.get(name='Tutores')
+    tutores = grupo_tutores.user_set.all()
+
+    filtro_tutor_id = request.GET.get('filtro_tutor_id')
+
+    if filtro_tutor_id == '1':
+        asesorias = Asesoria.objects.filter(tutor_id=1)
+    else:
+        asesorias = Asesoria.objects.all()
+
+    return render(request, 'accounts/listarAsesorias.html', {'asesorias': asesorias, 'tutores': tutores})
+
+def actualizar_asesoria(request, asesoria_id):
+    if request.method == 'POST':
+        tutor_id = request.POST.get('TutorID')
+        if tutor_id is not None:  # Validar que se haya seleccionado un tutor
+            asesoria = get_object_or_404(Asesoria, id=asesoria_id)
+            asesoria.tutor_id = tutor_id
+            asesoria.save()
+    return redirect('mostrar_asesorias')

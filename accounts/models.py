@@ -49,11 +49,11 @@ deptos = [
 
 # Opciones para la pregunta con radio buttons
 OpcionesMaterias = [
-    (1, "Programacion"),
-    (2, "Calculo"),
-    (3, "Pre calculo"),
-    (4, "Fisica"),
-    (5, "Algoritmia"),
+    ('Programacion', "Programacion"),
+    ('Calculo', "Calculo"),
+    ('Pre calculo', "Pre calculo"),
+    ('Fisica', "Fisica"),
+    ('Algoritmia', "Algoritmia"),
 ]
 
 class ProgramaEducativo(models.Model):
@@ -90,11 +90,9 @@ class PerfilTutor(models.Model):
 
 
 class Asesoria(models.Model):
-    alumno = models.OneToOneField(User, on_delete=models.CASCADE, related_name='asesoria_alumno')
-    tutor = models.OneToOneField(User, on_delete=models.CASCADE, related_name='asesoria_tutor')
+    alumno = models.ForeignKey(User, on_delete=models.CASCADE, related_name='asesorias_alumno')
+    tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='asesorias_tutor')
     descripcion = models.CharField(max_length=150)
-    materia = models.IntegerField(choices=OpcionesMaterias)
-
-    
+    materia = models.CharField(choices=OpcionesMaterias, max_length = 30)
 
 
