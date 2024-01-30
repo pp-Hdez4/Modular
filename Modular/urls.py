@@ -43,6 +43,8 @@ urlpatterns = [
     path('encuesta_salud/', views.salud_f, name = "salud"),
     path('encuesta_saludm/', views.saludmental_f, name = "salud_mental"),
     path('encuesta_tics/', views.tics_f, name = "tics"),
+    
+    
 
     #accounts
 
@@ -53,6 +55,9 @@ urlpatterns = [
     path('perfil2/verificacion/', vaccount.VerificarTutor, name = 'Verificar2'),
     path('login/', CustomLoginView.as_view(), name = 'login'),
     path('accounts/logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('solicitar_asesoria/', vaccount.solicitarAsesoria_View, name="solicitar_asesoria"),
+    
+    
     
 
     #admin profile
@@ -60,6 +65,7 @@ urlpatterns = [
 
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
     path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),
+    
     
     #chatbot
     path('chat/', vchat.ChatPage , name= "chatbot"),

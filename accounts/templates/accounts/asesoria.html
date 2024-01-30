@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+<div>
+    <h1>Solicitar asesoria</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.descripcion | as_crispy_field }}
+        {{ form.materia | as_crispy_field }}
+
+        <button type="submit" class="btn btn-primary">Solicitar</button>
+    </form>
+
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+</div>
+{% endblock %}

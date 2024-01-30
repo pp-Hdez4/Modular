@@ -14,3 +14,5 @@ def crearReporteView(request):
         'form' : crearReporteForm()
     }
     return render(request, 'globalcore/crearReporte.html', data)
+
+

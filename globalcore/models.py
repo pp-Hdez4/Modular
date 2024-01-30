@@ -19,3 +19,7 @@ class reporte(models.Model):
     id_tutor = models.IntegerField()
     titulo = models.TextField()
     situacion = models.TextField()
+    
+    
+
+
