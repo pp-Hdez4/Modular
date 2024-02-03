@@ -253,32 +253,45 @@ def VerificarTutor(request):
 
 
 def solicitarAsesoria_View(request):
+    alumno_id = None
+
     if request.user.is_authenticated:
         alumno_id = request.user.id
-    tutor = User.objects.get(id=1)  # Obtener el tutor por su ID
 
     data = {'form': solicitarAsesoriaForm()}
 
-    if request.method == 'POST':
-        form = solicitarAsesoriaForm(request.POST)
-        if form.is_valid():
-            descripcion = form.cleaned_data['descripcion']
-            materia = form.cleaned_data['materia']
+    # Verificar si el estudiante ya tiene una asesoría en curso
+    perfil_estudiante = PerfilEstudiante.objects.get(usuario_id=alumno_id)
+    if perfil_estudiante.asesorado == 0:  # Verificar si asesorado es 0 (False)
+        if request.method == 'POST':
+            form = solicitarAsesoriaForm(request.POST)
+            if form.is_valid():
+                descripcion = form.cleaned_data['descripcion']
+                materia = form.cleaned_data['materia']
 
-            nueva_asesoria = Asesoria.objects.create(
-                alumno_id=alumno_id,
-                tutor=tutor,
-                descripcion=descripcion,
-                materia=materia
-            )
-            # Guardar los datos en la base de datos
-            nueva_asesoria.save()
+                tutor = User.objects.get(id=1)
 
-            data["mensaje"] = "Asesoría solicitada correctamente."
-        else:
-            data["form"] = form  # Usar el formulario con errores si no es válido
+                nueva_asesoria = Asesoria.objects.create(
+                    alumno_id=alumno_id,
+                    tutor=tutor,
+                    descripcion=descripcion,
+                    materia=materia
+                )
+                nueva_asesoria.save()
+
+                # Actualizar el campo 'asesorado' en el perfil del estudiante
+                perfil_estudiante.asesorado = True
+                perfil_estudiante.save()
+
+                data["mensaje"] = "Asesoría solicitada correctamente."
+            else:
+                data["form"] = form
+    else:
+        data['mensaje'] = 'Ya tienes una asesoría en curso.'
 
     return render(request, 'accounts/asesoria.html', data)
+
+
 
 
 

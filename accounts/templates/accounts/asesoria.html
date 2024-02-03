@@ -4,7 +4,13 @@
 {% load crispy_forms_tags %}
 
 <div>
-    <h1>Solicitar asesoria</h1>
+    <h1>Solicitar asesoría</h1>
+
+    {% if mensaje %}
+    <p>{{ mensaje }}</p>
+    {% endif %}
+
+    {% if not mensaje %}
     <form action="" method="post">
         {% csrf_token %}
         {{ form.descripcion | as_crispy_field }}
@@ -12,9 +18,6 @@
 
         <button type="submit" class="btn btn-primary">Solicitar</button>
     </form>
-
-    {% if mensaje %}
-        <p>{{ mensaje }}</p>
     {% endif %}
 </div>
 {% endblock %}
