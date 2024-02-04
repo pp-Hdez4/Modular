@@ -58,8 +58,10 @@ urlpatterns = [
     #admin profile
     path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
 
+    #globalcore
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
     path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),
+    path('sesion/', vglobal.crearSesionView, name = 'nuevaSesion'),
     
     #chatbot
     path('chat/', vchat.ChatPage , name= "chatbot"),
