@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import UserRegisterForm, PerfilEstudianteForm, PerfilTutorForm, VerificacionEstudianteForm, VerificacionTutorForm,LoginForm
+from .forms import UserRegisterForm, PerfilEstudianteForm, PerfilTutorForm, VerificacionEstudianteForm, VerificacionTutorForm,LoginForm, solicitarAsesoriaForm
 from django.http import HttpRequest
-from .models import PerfilEstudiante, PerfilTutor
+from .models import PerfilEstudiante, PerfilTutor, Asesoria
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 #from .forms import InformacionForm
@@ -22,6 +22,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import UserRegistrationForm
+from django.shortcuts import render, redirect, get_object_or_404
+
 
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
@@ -249,3 +251,68 @@ def VerificarTutor(request):
 
     return render(request, 'registration/verificaciont.html', data)
 
+
+def solicitarAsesoria_View(request):
+    alumno_id = None
+
+    if request.user.is_authenticated:
+        alumno_id = request.user.id
+
+    data = {'form': solicitarAsesoriaForm()}
+
+    # Verificar si el estudiante ya tiene una asesoría en curso
+    perfil_estudiante = PerfilEstudiante.objects.get(usuario_id=alumno_id)
+    if perfil_estudiante.asesorado == 0:  # Verificar si asesorado es 0 (False)
+        if request.method == 'POST':
+            form = solicitarAsesoriaForm(request.POST)
+            if form.is_valid():
+                descripcion = form.cleaned_data['descripcion']
+                materia = form.cleaned_data['materia']
+
+                tutor = User.objects.get(id=1)
+
+                nueva_asesoria = Asesoria.objects.create(
+                    alumno_id=alumno_id,
+                    tutor=tutor,
+                    descripcion=descripcion,
+                    materia=materia
+                )
+                nueva_asesoria.save()
+
+                # Actualizar el campo 'asesorado' en el perfil del estudiante
+                perfil_estudiante.asesorado = True
+                perfil_estudiante.save()
+
+                data["mensaje"] = "Asesoría solicitada correctamente."
+            else:
+                data["form"] = form
+    else:
+        data['mensaje'] = 'Ya tienes una asesoría en curso.'
+
+    return render(request, 'accounts/asesoria.html', data)
+
+
+
+
+
+def mostrarAsesorias(request):
+    grupo_tutores = Group.objects.get(name='Tutores')
+    tutores = grupo_tutores.user_set.all()
+
+    filtro_tutor_id = request.GET.get('filtro_tutor_id')
+
+    if filtro_tutor_id == '1':
+        asesorias = Asesoria.objects.filter(tutor_id=1)
+    else:
+        asesorias = Asesoria.objects.all()
+
+    return render(request, 'accounts/listarAsesorias.html', {'asesorias': asesorias, 'tutores': tutores})
+
+def actualizar_asesoria(request, asesoria_id):
+    if request.method == 'POST':
+        tutor_id = request.POST.get('TutorID')
+        if tutor_id is not None:  # Validar que se haya seleccionado un tutor
+            asesoria = get_object_or_404(Asesoria, id=asesoria_id)
+            asesoria.tutor_id = tutor_id
+            asesoria.save()
+    return redirect('mostrar_asesorias')

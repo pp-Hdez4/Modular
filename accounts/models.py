@@ -47,6 +47,15 @@ deptos = [
     ('INNI', 'Informatica'),
 ]
 
+# Opciones para la pregunta con radio buttons
+OpcionesMaterias = [
+    ('Programacion', "Programacion"),
+    ('Calculo', "Calculo"),
+    ('Pre calculo', "Pre calculo"),
+    ('Fisica', "Fisica"),
+    ('Algoritmia', "Algoritmia"),
+]
+
 class ProgramaEducativo(models.Model):
     #id automatico
     nombre = models.CharField("Nombre: ", max_length = 100)
@@ -80,6 +89,10 @@ class PerfilTutor(models.Model):
     depto = models.CharField(choices = deptos, default = 1, max_length = 100)
 
 
-
+class Asesoria(models.Model):
+    alumno = models.ForeignKey(User, on_delete=models.CASCADE, related_name='asesorias_alumno')
+    tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='asesorias_tutor')
+    descripcion = models.CharField(max_length=150)
+    materia = models.CharField(choices=OpcionesMaterias, max_length = 30)
 
 

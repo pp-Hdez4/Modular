@@ -15,6 +15,7 @@ def crearReporteView(request):
     }
     return render(request, 'globalcore/crearReporte.html', data)
 
+
 def crearSesionView(request):
     data = {
         'form' : crearSesionForm()

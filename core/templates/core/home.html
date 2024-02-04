@@ -54,6 +54,15 @@
             <li><a href="/encuesta_salud">Encuesta Salud</a></li>
             <li><a href="/encuesta_saludm">Encuesta Salud Mental</a></li>
             <li><a href="/encuesta_tics">Encuesta Acceso a las Tics</a></li>
+            <li><a href="/chat">ChatBot</a></li>
+            <li><a href="/login_user">login_user</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="/solicitar_asesoria">Solicitar Asesoria</a></li>
+            <li><a href="/mostrar_asesorias">Motrar asesorias pendientes</a></li>
+
+            {% endif %}
+
+            
             
         </ul> 
    </div>
