@@ -1,5 +1,11 @@
 from django.shortcuts import render
-from .forms import  crearReporteForm, crearSesionForm
+
+<<<<<<< HEAD
+
+from .forms import   crearSesionForm
+
+=======
+>>>>>>> parent of 183e20d (Merge branch 'master' into Rama-Pepe)
 # Create your views here.
 
 #solucion rama daniel
@@ -9,15 +15,6 @@ from .forms import  crearReporteForm, crearSesionForm
     }
     return render(request, 'globalcore/asesorianueva.html', data)"""
 
-def crearReporteView(request):
-    data = {
-        'form' : crearReporteForm()
-    }
-    return render(request, 'globalcore/crearReporte.html', data)
 
 
-def crearSesionView(request):
-    data = {
-        'form' : crearSesionForm()
-    }
-    return render(request, 'globalcore/crearSesion.html', data)
+

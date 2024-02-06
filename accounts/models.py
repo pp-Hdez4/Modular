@@ -88,23 +88,18 @@ class PerfilTutor(models.Model):
     fecha_nacimiento = models.DateField() #fecha de nacimiento
     depto = models.CharField(choices = deptos, default = 1, max_length = 100)
 
-opcionesAsesoria = [
-    ('Inicio', "Inicio"),
-    ('Trayecto', "Trayecto"),
-    ('Egreso', "Egreso"),
-]
-
-opcionesStatus = [
-    ('Aceptada', 'Aceptada'),
-    ('Cancelada', 'Cancelada'),
-]
 
 class Asesoria(models.Model):
     alumno = models.ForeignKey(User, on_delete=models.CASCADE, related_name='asesorias_alumno')
     tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='asesorias_tutor')
-    motivos = models.CharField(max_length=150)
-    tipo = models.CharField(max_length = 20, choices = opcionesAsesoria, default = 'Inicio')
-    status = models.CharField(max_length = 20, choices = opcionesAsesoria, default = 'Solicitada')
-    #materia = models.CharField(choices=OpcionesMaterias, max_length = 30)
+    descripcion = models.CharField(max_length=150)
+    materia = models.CharField(choices=OpcionesMaterias, max_length = 30)
+    
+class reporte(models.Model):
+    id_estudiante = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reportes_alumno')
+    id_tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reportes_tutor')
+    titulo = models.TextField()
+    situacion = models.TextField()
+    
 
 

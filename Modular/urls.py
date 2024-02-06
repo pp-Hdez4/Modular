@@ -22,7 +22,6 @@ from accounts.views import CustomLoginView
 from adminprofile import views as vadmin
 from globalcore import views as vglobal
 from chatbot import views as vchat
-from activities import views as vactivities
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -45,6 +44,8 @@ urlpatterns = [
     path('encuesta_saludm/', views.saludmental_f, name = "salud_mental"),
     path('encuesta_tics/', views.tics_f, name = "tics"),
     
+    
+
     #accounts
 
     path('register/', vaccount.registerUser, name='register'),
@@ -57,19 +58,24 @@ urlpatterns = [
     path('solicitar_asesoria/', vaccount.solicitarAsesoria_View, name="solicitar_asesoria"),
     path('mostrar_asesorias/', vaccount.mostrarAsesorias, name="mostrar_asesorias" ),
     path('actualizar-asesoria/<int:asesoria_id>/', vaccount.actualizar_asesoria, name='actualizar_asesoria'),
+    path('reporteasesoria/', vaccount.crearReporteView, name= "reporteasesoria"),
+
+    
+    
+    
 
     #admin profile
     path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
 
-    #globalcore
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
-    path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),
-    path('sesion/', vglobal.crearSesionView, name = 'nuevaSesion'),
-    
-    #Activities app
-    #path('actividad1de1/', vactivities.InicioActividad1v, name = 'actividad1d1'),
-    path('activities/', include('activities.urls')),
 
+
+    path('sesion/', vglobal.crearSesionView, name = 'nuevaSesion'),
+
+
+    
+    
+    
     #chatbot
     path('chat/', vchat.ChatPage , name= "chatbot"),
     path('getResponse', vchat.getResponse, name= "getResponse"),

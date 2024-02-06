@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import UserRegisterForm, PerfilEstudianteForm, PerfilTutorForm, VerificacionEstudianteForm, VerificacionTutorForm,LoginForm, solicitarAsesoriaForm
 from django.http import HttpRequest
-from .models import PerfilEstudiante, PerfilTutor, Asesoria
+from .models import PerfilEstudiante, PerfilTutor, Asesoria , reporte
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 #from .forms import InformacionForm
 import re
 from datetime import datetime
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm , crearReporteForm
 import random
 import string
 #login
@@ -21,7 +21,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm , crearReporteForm
 from django.shortcuts import render, redirect, get_object_or_404
 
 
@@ -266,8 +266,8 @@ def solicitarAsesoria_View(request):
         if request.method == 'POST':
             form = solicitarAsesoriaForm(request.POST)
             if form.is_valid():
-                descripcion = form.cleaned_data['motivos']
-                materia = form.cleaned_data['tipo']
+                descripcion = form.cleaned_data['descripcion']
+                materia = form.cleaned_data['materia']
 
                 tutor = User.objects.get(id=1)
 
@@ -316,3 +316,39 @@ def actualizar_asesoria(request, asesoria_id):
             asesoria.tutor_id = tutor_id
             asesoria.save()
     return redirect('mostrar_asesorias')
+
+def crearReporteView(request):
+    form = crearReporteForm()
+    
+    if request.user.is_authenticated:
+        alumno_id = request.user.id  # Obtener el ID del estudiante autenticado
+
+        if request.method == 'POST':
+            form = crearReporteForm(request.POST)
+            if form.is_valid():
+                titulo = form.cleaned_data['titulo']
+                situacion = form.cleaned_data['situacion']
+                
+                tutor_id = None
+                
+                # Consulta la tabla 'accounts_asesoria' filtrando por el ID del estudiante
+                asesorias = Asesoria.objects.filter(alumno_id=alumno_id)
+                
+                # Verifica si hay al menos una asesoría para el estudiante
+                if asesorias.exists():
+                    # Si hay asesorías, toma el ID del tutor asignado de la primera asesoría encontrada
+                    tutor_id = asesorias.first().tutor_id
+                else:
+                    print("El estudiante no tiene asesorías asignadas")
+                
+                # Crea el nuevo reporte utilizando el ID del estudiante y el ID del tutor
+                nuevo_reporte = reporte.objects.create(id_estudiante_id=alumno_id, id_tutor_id=tutor_id, titulo=titulo, situacion=situacion)
+                return redirect('reporteasesoria')
+    else:
+        form = crearReporteForm()
+
+    data = {
+        'form': form
+    }
+    return render(request, 'accounts/crearReporte.html', data)
+
