@@ -266,8 +266,8 @@ def solicitarAsesoria_View(request):
         if request.method == 'POST':
             form = solicitarAsesoriaForm(request.POST)
             if form.is_valid():
-                descripcion = form.cleaned_data['descripcion']
-                materia = form.cleaned_data['materia']
+                descripcion = form.cleaned_data['motivos']
+                materia = form.cleaned_data['tipo']
 
                 tutor = User.objects.get(id=1)
 

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .forms import   crearSesionForm
+
 # Create your views here.
 
 #solucion rama daniel
@@ -12,3 +14,8 @@ from django.shortcuts import render
 
 
 
+def crearSesionView(request):
+    data = {
+        'form' : crearSesionForm()
+    }
+    return render(request, 'globalcore/crearSesion.html', data)

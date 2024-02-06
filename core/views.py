@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from .forms import TutoriaInicialForm, EducationalProgram, emprendimiento, adicciones , EmpleoIngresosForm, vivienda, tiemposTransporte
 from .forms import pueblosOriginarios, fpersonal, fdiscapacidad, fneurodiversidad, fsalud, fsaludmental, ftics
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
 
+
+def pertenece_grupo(user):
+    return user.groups.filter(name='Estudiantes').exists()
+
+@login_required
+#@user_passes_test(pertenece_grupo, login_url='chatbot')
 def home(request):
     return render(request, "core/home.html")
 
