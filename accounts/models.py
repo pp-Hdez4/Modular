@@ -94,5 +94,12 @@ class Asesoria(models.Model):
     tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='asesorias_tutor')
     descripcion = models.CharField(max_length=150)
     materia = models.CharField(choices=OpcionesMaterias, max_length = 30)
+    
+class reporte(models.Model):
+    id_estudiante = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reportes_alumno')
+    id_tutor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reportes_tutor')
+    titulo = models.TextField()
+    situacion = models.TextField()
+    
 
 

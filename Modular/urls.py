@@ -58,6 +58,7 @@ urlpatterns = [
     path('solicitar_asesoria/', vaccount.solicitarAsesoria_View, name="solicitar_asesoria"),
     path('mostrar_asesorias/', vaccount.mostrarAsesorias, name="mostrar_asesorias" ),
     path('actualizar-asesoria/<int:asesoria_id>/', vaccount.actualizar_asesoria, name='actualizar_asesoria'),
+    path('reporteasesoria/', vaccount.crearReporteView, name= "reporteasesoria"),
 
     
     
@@ -67,7 +68,7 @@ urlpatterns = [
     path('coordinacion/', vadmin.coordinacionView, name = 'nuevacoordinacion' ),
 
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
-    path('reporteasesoria', vglobal.crearReporteView, name= "reporteasesoria"),
+    
     
     
     #chatbot

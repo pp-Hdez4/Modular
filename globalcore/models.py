@@ -14,12 +14,5 @@ from django.db import models
     calendario = models.CharField(max_length = 20)
     motivo = models.TextField()"""
     
-class reporte(models.Model):
-    id_estudiante = models.IntegerField()
-    id_tutor = models.IntegerField()
-    titulo = models.TextField()
-    situacion = models.TextField()
-    
-    
 
 
