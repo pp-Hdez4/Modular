@@ -14,7 +14,7 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['username', 'password']
-        
+
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
