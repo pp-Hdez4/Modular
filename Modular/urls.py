@@ -65,7 +65,6 @@ urlpatterns = [
     #globalcore
     #path('asesorianueva', vglobal.solicitarAsesoriaView, name = 'asesorianueva' ),#
 
-
     path('sesion/', vglobal.crearSesionView, name = 'nuevaSesion'),
 
     
