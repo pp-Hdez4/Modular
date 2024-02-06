@@ -317,6 +317,7 @@ class InicioActividad2(models.Model):
     
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_finalizada = models.DateField()
+    #campos del formulario
 
 class InicioActividad3(models.Model):
     tutoria = models.ForeignKey(Asesoria, on_delete=models.CASCADE,related_name='asesorias_actividad3')
