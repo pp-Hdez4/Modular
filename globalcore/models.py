@@ -12,10 +12,14 @@ places = [
 ]
 
 
+    
+
 # Create your models here. 
 class reporte(models.Model):
     titulo = models.TextField()
     situacion = models.TextField()
+
+
 
 class sesion(models.Model):
     user_student =  models.OneToOneField(User, on_delete=models.CASCADE) #llave de usuario foranea
