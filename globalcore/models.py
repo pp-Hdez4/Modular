@@ -27,3 +27,4 @@ class sesion(models.Model):
     comentarios = models.TextField("")
     sitio = models.CharField("", max_length = 150)
     hora = models.TimeField()
+    

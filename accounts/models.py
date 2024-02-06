@@ -106,5 +106,8 @@ class Asesoria(models.Model):
     tipo = models.CharField(max_length = 20, choices = opcionesAsesoria, default = 'Inicio')
     status = models.CharField(max_length = 20, choices = opcionesAsesoria, default = 'Solicitada')
     #materia = models.CharField(choices=OpcionesMaterias, max_length = 30)
+    #actividad 1 true 
+    #actividad 2 false
+    #actividad 3 false
 
 
