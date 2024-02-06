@@ -14,6 +14,7 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+        
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
@@ -113,9 +114,9 @@ class VerificacionTutorForm(ModelForm):
 class solicitarAsesoriaForm(ModelForm):
     class Meta:
         model = Asesoria
-        fields = [ 'descripcion', 'materia' ]
+        fields = [ 'motivos', 'tipo' ]
         widgets = {
-            'descripcion' : forms.TextInput(attrs={ 'placeholder': 'Descripcion de la asesoria'})
+            'motivos' : forms.TextInput(attrs={ 'placeholder': 'Ingresa los motivos para solicitar la tutoria'})
         }
         
         
