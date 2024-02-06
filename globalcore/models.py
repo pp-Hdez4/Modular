@@ -1,13 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
-"""class asesoria(models.Model):
-    #id automatico
-    id_estudiante = models.IntegerField()
-    id_tutor = models.IntegerField()
-    status = models.IntegerField(default = 0)
+status_sesion = [
+    ('Open' , 'Abierta'),
+    ('Close' , 'Finalizada'),
+    ('Canceled' , 'Cancelada'),
+]
+places = [
+    ('PRESENCIAL', 'Presencial'),
+    ('VIRTUAL', 'Virtual'),
+]
 
-<<<<<<< HEAD
+
 # Create your models here. 
 class reporte(models.Model):
     titulo = models.TextField()
@@ -23,14 +27,3 @@ class sesion(models.Model):
     comentarios = models.TextField("")
     sitio = models.CharField("", max_length = 150)
     hora = models.TimeField()
-=======
-    fecha_inicio = models.DateField()
-    fecha_final = models.DateField()
-    
-    status = models.IntegerField()
-    calendario = models.CharField(max_length = 20)
-    motivo = models.TextField()"""
-    
-
-
->>>>>>> parent of 183e20d (Merge branch 'master' into Rama-Pepe)

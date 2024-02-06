@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static '/styles/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'chatbot/chatStyle.css' %}" />
 </head>
 <body> 
    <header>
@@ -67,25 +67,6 @@
         </ul> 
    </div>
 
-   <!-- Modal -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="chatbot">
-            <!-- Contenido del chatbot -->
-            <h2>Mi Chatbot</h2>
-            <div id="chat-container">
-                <div id="chat-area"></div>
-                <input type="text" id="userInput" placeholder="Escribe un mensaje...">
-                <button id="buttonInput">Enviar</button>
-            </div>
-        </div>
-    </div>
-</div>
-  
-<!-- Botón para abrir el modal -->
-<button id="openModalBtn">Abrir ChatBot</button>
-
    
    <footer>
     <section id="footer">
@@ -104,59 +85,6 @@
             </div>
         </div>
     </section>
-   </footer>
-   
-   <!-- JavaScript para el modal -->
-   <script>
-      // Obtener el modal
-      var modal = document.getElementById("myModal");
-
-      // Obtener el botón que abre el modal
-      var btn = document.getElementById("openModalBtn");
-
-      // Obtener el elemento span que cierra el modal
-      var span = document.getElementsByClassName("close")[0];
-
-      // Cuando el usuario haga clic en el botón, abrir el modal
-      btn.onclick = function() {
-        modal.style.display = "block";
-      }
-
-      // Cuando el usuario haga clic en <span> (x), cerrar el modal
-      span.onclick = function() {
-        modal.style.display = "none";
-      }
-
-      // Cuando el usuario haga clic en cualquier parte fuera del modal, cerrarlo
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-   </script>
-
-   <!-- JavaScript para el chatbot -->
-   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-   <script>
-        $(document).ready(function() {
-            function getUserResponse() {
-                var userText = $('#userInput').val();
-                var userHTML = "<p class='userText'>User: <span>" + userText + "</span></p>";
-                $('#userInput').val("");
-        
-                $('#chat-area').append(userHTML);
-        
-                $.get('/getResponse', {userMessage: userText}).done(function (data) {
-                    var returnedMessage = "<p class='botText'>Chatbot: <span>" + data.botResponse + "</span></p>";
-                    $('#chat-area').append(returnedMessage);
-                });
-            }
-        
-            $('#buttonInput').click(function () {
-                getUserResponse();
-            });
-        });
-    </script>
-
+   </footer>  
 </body>
 </html>

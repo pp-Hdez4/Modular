@@ -1,8 +1,8 @@
 
 from django.forms import ModelForm
-from .models import ProgramaEducativo, PerfilEstudiante, PerfilTutor, Asesoria
+from .models import ProgramaEducativo, PerfilEstudiante, PerfilTutor, Asesoria , reporte
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 #autenticate django users
@@ -14,7 +14,7 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['username', 'password']
-
+        
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
@@ -118,5 +118,11 @@ class solicitarAsesoriaForm(ModelForm):
         widgets = {
             'motivos' : forms.TextInput(attrs={ 'placeholder': 'Ingresa los motivos para solicitar la tutoria'})
         }
+        
+class crearReporteForm(ModelForm):
+    class Meta:
+        model = reporte
+        fields = ['titulo', 'situacion']
+        
         
         
