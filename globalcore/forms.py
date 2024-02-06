@@ -8,12 +8,11 @@
         model = asesoria
         fields = ['calendario', 'motivo']"""
         
-        
-        
+
 
 from django.forms import ModelForm
 from django import forms
-from .models import reporte, sesion
+from .models import  sesion
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils import timezone
@@ -26,6 +25,7 @@ from django.forms.widgets import SelectDateWidget
 class CustomSelectDateWidget(SelectDateWidget):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         
         # Obtener la fecha de mañana y la fecha 15 días después
         tomorrow = datetime.now() + timedelta(days=1)
