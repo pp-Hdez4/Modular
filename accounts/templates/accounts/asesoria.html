@@ -13,8 +13,8 @@
     {% if not mensaje %}
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.descripcion | as_crispy_field }}
-        {{ form.materia | as_crispy_field }}
+        {{ form.motivos | as_crispy_field }}
+        {{ form.tipo | as_crispy_field }}
 
         <button type="submit" class="btn btn-primary">Solicitar</button>
     </form>
