@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'adminprofile',
     'globalcore',
     'chatbot',
-    'activities',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
